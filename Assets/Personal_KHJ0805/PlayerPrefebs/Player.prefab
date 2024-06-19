@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2280374280384133030}
   - component: {fileID: 1893296699964139360}
   - component: {fileID: 8393782640223632248}
+  - component: {fileID: 3647800490334278379}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -119,9 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb72f44083074a80836e047109bb0ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
   moveSpeed: 8
 --- !u!61 &8393782640223632248
 BoxCollider2D:
@@ -168,6 +166,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9, y: 3}
   m_EdgeRadius: 0
+--- !u!114 &3647800490334278379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006447981297442508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bdd3aa399bd3594f805fee577889195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  hillLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  isGrounded: 0
+  isGroundedOnHill: 0
 --- !u!1 &7907860838660062434
 GameObject:
   m_ObjectHideFlags: 0
