@@ -4,9 +4,9 @@ public class PlayerMovement : MonoBehaviour
 {
     private InputController controller;
     private Rigidbody2D movementRigidbody;
+    private GroundCheck groundCheck;
 
     private Vector2 movementDirection = Vector2.zero;
-    private bool isGrounded = true;
     private bool canDoubleJump = false;
     private float jumpForce = 7f;
 
@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     {
         controller = GetComponent<InputController>();
         movementRigidbody = GetComponent<Rigidbody2D>();
+        groundCheck = GetComponentInChildren<GroundCheck>(); // GroundCheck 컴포넌트를 가져옴
     }
 
     private void Start()
@@ -40,10 +41,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (isGrounded)
+        if (groundCheck.isGrounded || groundCheck.isGroundedOnHill)
         {
             movementRigidbody.velocity = new Vector2(movementRigidbody.velocity.x, jumpForce);
-            isGrounded = false;
             canDoubleJump = true;
         }
         else if (canDoubleJump)
@@ -62,13 +62,5 @@ public class PlayerMovement : MonoBehaviour
     {
         direction = direction * moveSpeed;
         movementRigidbody.velocity = new Vector2(direction.x, movementRigidbody.velocity.y);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
     }
 }
