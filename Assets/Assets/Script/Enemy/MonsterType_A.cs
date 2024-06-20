@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
-public class TopDownContactEnemyController : TopDownEnemyController
+public class MonsterType_A : Monster
 {
+    GameManager gameManager;
+    protected bool IsAttacking { get; set; }
+
+    private float timeSinceLastAttack = float.MaxValue;
+    protected Transform ClosestTarget { get; private set; }
+
     [SerializeField][Range(0f, 100f)] private float followRange;
     [SerializeField] private string targetTag = "Player";
     private bool isCollidingWithTarget;
@@ -12,28 +19,27 @@ public class TopDownContactEnemyController : TopDownEnemyController
 
     private HealthSystem healthSystem;
     private HealthSystem collidingTargetHealthSystem;
-    private float autoMovedir =-1;
+    private float autoMovedir = -1;
 
-    protected override void Start()
+    protected virtual void Start()
     {
-        base.Start();
+        gameManager = GameManager.Instance;
+        ClosestTarget = gameManager.Player;
 
         healthSystem = GetComponent<HealthSystem>();
         healthSystem.OnDamage += OnDamage;
-        InvokeRepeating("AutoMove", 0f,1.0f);
+        InvokeRepeating("AutoMove", 0f, 1.0f);
     }
-
     private void OnDamage()
     {
         followRange = 100f;
     }
-
-    protected override void FixedUpdate()
+    override  protected void FixedUpdate()
     {
         base.FixedUpdate();
 
-        if(isCollidingWithTarget ) 
-        { 
+        if (isCollidingWithTarget)
+        {
             ApplyHealthChange();
         }
 
@@ -41,22 +47,34 @@ public class TopDownContactEnemyController : TopDownEnemyController
         if (DistanceToTarget() < followRange)
         {
             direction = DirectionToTarget();
-            CallMoveEvent(direction);
+            movementDirection = direction;
             Rotate(direction);
             CancelInvoke("AutoMove");
         }
-        else 
+        else
         {
             direction.x += autoMovedir;
-            CallMoveEvent(direction);
+            movementDirection = direction;
             Rotate(direction);
         }
 
+    }
 
+    private void Update() 
+    {
+    }
+    protected float DistanceToTarget()
+    {
+        return Vector3.Distance(transform.position, ClosestTarget.position);
+    }
+
+    protected Vector2 DirectionToTarget()
+    {
+        return (ClosestTarget.position - transform.position).normalized;
     }
 
     private void Rotate(Vector2 direction)
-    { 
+    {
         characterRenderer.flipX = direction.x > 0;
     }
 
@@ -88,13 +106,13 @@ public class TopDownContactEnemyController : TopDownEnemyController
 
     private void ApplyHealthChange()
     {
-        AttackSo attackSO = stats.CurrentStat.attackSO;
+        AttackSo attackSO = characterStatHandler.CurrentStat.attackSO;
         bool hasBeenChanged = collidingTargetHealthSystem.ChangeHealth(-attackSO.power);
     }
 
     private void AutoMove()
     {
-        if (autoMovedir > 0) 
+        if (autoMovedir > 0)
         {
             autoMovedir = -1;
         }
@@ -102,6 +120,6 @@ public class TopDownContactEnemyController : TopDownEnemyController
         {
             autoMovedir = 1;
         }
-        
+
     }
 }

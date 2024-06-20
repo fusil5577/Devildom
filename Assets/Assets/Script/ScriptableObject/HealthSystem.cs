@@ -45,6 +45,7 @@ public class HealthSystem : MonoBehaviour
                 isAttacked = false;
             }
         }
+
     }
 
     public bool ChangeHealth(float change)

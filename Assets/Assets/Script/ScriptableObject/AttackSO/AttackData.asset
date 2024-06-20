@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 3a81461683cff704c9a98ed6ded17632, type: 3}
   m_Name: AttackData
   m_EditorClassIdentifier: Assembly-CSharp::AttackSo
-  size: 1
-  delay: 0.15
+  size: 0
+  delay: 0.5
   power: 1
-  speed: 5
+  speed: 0
   target:
     serializedVersion: 2
     m_Bits: 0
