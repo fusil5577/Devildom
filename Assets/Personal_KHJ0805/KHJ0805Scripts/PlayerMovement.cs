@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movementDirection = Vector2.zero;
     private bool canDoubleJump = false;
     private float jumpForce = 7f;
+    private SpriteRenderer sprite;
 
     [SerializeField] private float moveSpeed = 8.0f;
 
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<InputController>();
         movementRigidbody = GetComponent<Rigidbody2D>();
         groundCheck = GetComponentInChildren<GroundCheck>(); // GroundCheck 컴포넌트를 가져옴
+        sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Start()
@@ -31,11 +33,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (direction.x > 0)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            sprite.flipX = false;
         }
         else if (direction.x < 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            sprite.flipX = true;
         }
     }
 
