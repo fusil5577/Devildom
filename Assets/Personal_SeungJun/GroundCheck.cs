@@ -19,37 +19,37 @@ public class GroundCheck : MonoBehaviour
         BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
         Vector2 leftOrigin = new Vector2(transform.position.x - boxCollider.bounds.extents.x, transform.position.y - 2.99f);
         Vector2 rightOrigin = new Vector2(transform.position.x + boxCollider.bounds.extents.x, transform.position.y - 2.99f);
-
+        
         RaycastHit2D leftHit = Physics2D.Raycast(leftOrigin, Vector2.down, 0.00001f, groundLayerMask);
         RaycastHit2D rightHit = Physics2D.Raycast(rightOrigin, Vector2.down, 0.00001f, groundLayerMask);
 
-        // ¶¥¿¡ ´ê¾Æ ÀÖ´ÂÁö È®ÀÎ
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
         isGrounded = leftHit.collider != null || rightHit.collider != null;
 
-        // Hill ·¹ÀÌ¾î¿¡ ´ëÇÑ ·¹ÀÌÄ³½ºÆ® °ËÃâ
+        // Hill ï¿½ï¿½ï¿½Ì¾î¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         RaycastHit2D leftHillhit = Physics2D.Raycast(leftOrigin, Vector2.down, 0.1f, hillLayerMask);
         RaycastHit2D rightHillhit = Physics2D.Raycast(rightOrigin, Vector2.down, 0.1f, hillLayerMask);
 
-        // HillÀ» ¹â°í ÀÖ´ÂÁö ¿©ºÎ¸¦ È®ÀÎ
+        // Hillï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¸ï¿½ È®ï¿½ï¿½
         if (leftHillhit.collider != null || rightHillhit.collider != null)
         {
             isGroundedOnHill = true;
 
-            // Hill °´Ã¼¸¦ ÀúÀåÇÏ°í ÃÊ±â Æ®¸®°Å »óÅÂ¸¦ ±â¾ï
+            // Hill ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ê±ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½
             if (leftHillhit.collider != null && (currentHillCollider == null || currentHillCollider != leftHillhit.collider))
             {
-                currentHillCollider = leftHillhit.collider; // Collider °´Ã¼¸¦ ±â¾ï
+                currentHillCollider = leftHillhit.collider; // Collider ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½
                 currentHillCollider.isTrigger = false;
             }
             else if (rightHillhit.collider != null && (currentHillCollider == null || currentHillCollider != rightHillhit.collider))
             {
-                currentHillCollider = rightHillhit.collider; // Collider °´Ã¼¸¦ ±â¾ï
+                currentHillCollider = rightHillhit.collider; // Collider ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½
                 currentHillCollider.isTrigger = false;
             }
         }
         else
         {
-            // Hill¿¡¼­ ¹þ¾î³ª¸é ÀÌÀü HillÀÇ Æ®¸®°Å »óÅÂ¸¦ º¹¿ø
+            // Hillï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î³ªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Hillï¿½ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (isGroundedOnHill && currentHillCollider != null)
             {
                 currentHillCollider.isTrigger = true;
