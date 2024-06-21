@@ -109,6 +109,6 @@ public class ProjectileController : MonoBehaviour
         {
             // TODO : ParticleSystem에 대해서 배우고, 무기 NameTag로 해당하는 FX가져오기
         }
-        gameObject.SetActive(false);
+        Destroy(this.gameObject);
     }
 }

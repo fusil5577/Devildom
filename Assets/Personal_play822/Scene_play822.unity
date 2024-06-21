@@ -5858,7 +5858,7 @@ PrefabInstance:
     - target: {fileID: 3825814654472326165, guid: 2b0814d5805cb334888d07eae372394e, type: 3}
       propertyPath: fireBall
       value: 
-      objectReference: {fileID: 1973797488871700, guid: 48e06088b7e195f40898a828bd389ec3, type: 3}
+      objectReference: {fileID: 1860706049015914, guid: 0b0c27137eb4d504096874b80ace66bd, type: 3}
     - target: {fileID: 6761450222799685686, guid: 2b0814d5805cb334888d07eae372394e, type: 3}
       propertyPath: m_Name
       value: MonsterType_B
@@ -5935,6 +5935,10 @@ PrefabInstance:
     - target: {fileID: 7396464846118828792, guid: d638940794ad74304b53dad72f51e7c9, type: 3}
       propertyPath: m_SortingOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393782640223632248, guid: d638940794ad74304b53dad72f51e7c9, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8685898858745514411, guid: d638940794ad74304b53dad72f51e7c9, type: 3}
       propertyPath: m_Layer

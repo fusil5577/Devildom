@@ -65,6 +65,7 @@ public class MonsterType_B : Monster
     private void Rotate(Vector2 direction)
     {
         characterRenderer.flipX = direction.x > 0;
+        aimDirection = direction;
     }
 
     private void AutoMove()
@@ -133,6 +134,7 @@ public class MonsterType_B : Monster
 
     private void CreateProjectile(RangedAttackSo RangedAttackSO)
     {
+        
         transform.position = projectileSpawnPosition.position;
         GameObject obj = Instantiate(fireBall,transform);
         ProjectileController attackController = obj.gameObject.GetComponent<ProjectileController>();
