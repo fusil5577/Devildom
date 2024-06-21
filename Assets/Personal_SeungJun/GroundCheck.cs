@@ -5,9 +5,15 @@ public class GroundCheck : MonoBehaviour
     public LayerMask groundLayerMask;
     public LayerMask hillLayerMask;
 
-    public bool isGrounded = false;
-    public bool isGroundedOnHill = false;
-    private Collider2D currentHillCollider;
+    private bool isGrounded = false;
+    private bool isHillded = false;
+
+    private CapsuleCollider2D capsuleCollider2D;
+
+    private void Start()
+    {
+        capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+    }
 
     private void Update()
     {
@@ -16,46 +22,27 @@ public class GroundCheck : MonoBehaviour
 
     private void CheckGrounded()
     {
-        BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
-        Vector2 leftOrigin = new Vector2(transform.position.x - boxCollider.bounds.extents.x, transform.position.y - 2.99f);
-        Vector2 rightOrigin = new Vector2(transform.position.x + boxCollider.bounds.extents.x, transform.position.y - 2.99f);
-        
-        RaycastHit2D leftHit = Physics2D.Raycast(leftOrigin, Vector2.down, 0.00001f, groundLayerMask);
-        RaycastHit2D rightHit = Physics2D.Raycast(rightOrigin, Vector2.down, 0.00001f, groundLayerMask);
+        Vector2 leftOrigin = new Vector2(transform.position.x - capsuleCollider2D.bounds.extents.x, transform.position.y - 2.99f);
+        Vector2 rightOrigin = new Vector2(transform.position.x + capsuleCollider2D.bounds.extents.x, transform.position.y - 2.99f);
 
-        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
-        isGrounded = leftHit.collider != null || rightHit.collider != null;
+        RaycastHit2D groundleftHit = Physics2D.Raycast(leftOrigin, Vector2.down, 0.00001f, groundLayerMask);
+        RaycastHit2D groundrightHit = Physics2D.Raycast(rightOrigin, Vector2.down, 0.00001f, groundLayerMask);
 
-        // Hill ï¿½ï¿½ï¿½Ì¾î¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
-        RaycastHit2D leftHillhit = Physics2D.Raycast(leftOrigin, Vector2.down, 0.1f, hillLayerMask);
-        RaycastHit2D rightHillhit = Physics2D.Raycast(rightOrigin, Vector2.down, 0.1f, hillLayerMask);
+        RaycastHit2D hillleftHit = Physics2D.Raycast(leftOrigin, Vector2.down, 0.00001f, hillLayerMask);
+        RaycastHit2D hillrightHit = Physics2D.Raycast(rightOrigin, Vector2.down, 0.00001f, hillLayerMask);
 
-        // Hillï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¸ï¿½ È®ï¿½ï¿½
-        if (leftHillhit.collider != null || rightHillhit.collider != null)
-        {
-            isGroundedOnHill = true;
+        // ¶¥¿¡ ´ê¾Æ ÀÖ´ÂÁö È®ÀÎ
+        isGrounded = groundleftHit.collider != null || groundrightHit.collider != null;
+        isHillded = hillleftHit.collider != null || hillrightHit.collider != null;
+    }
 
-            // Hill ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ê±ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½
-            if (leftHillhit.collider != null && (currentHillCollider == null || currentHillCollider != leftHillhit.collider))
-            {
-                currentHillCollider = leftHillhit.collider; // Collider ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½
-                currentHillCollider.isTrigger = false;
-            }
-            else if (rightHillhit.collider != null && (currentHillCollider == null || currentHillCollider != rightHillhit.collider))
-            {
-                currentHillCollider = rightHillhit.collider; // Collider ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½
-                currentHillCollider.isTrigger = false;
-            }
-        }
-        else
-        {
-            // Hillï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î³ªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Hillï¿½ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½
-            if (isGroundedOnHill && currentHillCollider != null)
-            {
-                currentHillCollider.isTrigger = true;
-                currentHillCollider = null;
-                isGroundedOnHill = false;
-            }
-        }
+    public bool GetGroundedState()
+    {
+        return isGrounded;
+    }
+
+    public bool GetHilledState()
+    {
+        return isHillded;
     }
 }
