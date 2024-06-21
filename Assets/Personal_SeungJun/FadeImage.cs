@@ -4,28 +4,22 @@ using System.Collections;
 
 public class FadeImage : MonoBehaviour
 {
-    public Image image;
-    public float FadeOutDuration = 2f;  // 페이드 아웃이 진행되는 시간
-    public float FadeInDuration = 2f;  // 페이드 인이 진행되는 시간
-
-    private void Start()
-    {
-        FadeIn();
-    }
+    private float FadeOutDuration = 2f;  // 페이드 아웃이 진행되는 시간
+    private float FadeInDuration = 2f;  // 페이드 인이 진행되는 시간
 
     // 페이드 아웃 (흐려짐)
-    public void FadeOut()
+    public void FadeOut(Image fadeOutimage)
     {
-        StartCoroutine(Fade(0f, 1f, FadeOutDuration));
+        StartCoroutine(Fade(fadeOutimage, 0f, 1f, FadeOutDuration));
     }
 
     // 페이드 인 (밝아짐)
-    public void FadeIn()
+    public void FadeIn(Image fadeInimage)
     {
-        StartCoroutine(Fade(1f, 0f, FadeInDuration));
+        StartCoroutine(Fade(fadeInimage, 1f, 0f, FadeInDuration));
     }
 
-    private IEnumerator Fade(float startAlpha, float endAlpha, float fadeDuration)
+    private IEnumerator Fade(Image image, float startAlpha, float endAlpha, float fadeDuration)
     {
         Color originalColor = image.color;
         float elapsedTime = 0f;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TestManager : MonoBehaviour // 임시 게임매니저
 {
@@ -11,6 +12,7 @@ public class TestManager : MonoBehaviour // 임시 게임매니저
     public GameObject currentPlayer;
     public ParallaxBackground[] parallaxBackgrounds;
     public CameraFollow cameraFollow;
+    public Image Screenimage;
     public FadeImage fadeImage;
 
     public bool isTalkingToNPC = false;
@@ -41,11 +43,12 @@ public class TestManager : MonoBehaviour // 임시 게임매니저
     private void Start()
     {
         SpawnPlayer();
+        fadeImage.FadeIn(Screenimage);
     }
 
     private void SpawnPlayer()
     {
-        fadeImage.FadeIn();
+        fadeImage.FadeIn(Screenimage);
 
         if (playerPrefab != null && spawnPoint != null)
         {
@@ -55,7 +58,7 @@ public class TestManager : MonoBehaviour // 임시 게임매니저
 
     public void OnPlayerDeath()
     {
-        fadeImage.FadeOut();
+        fadeImage.FadeOut(Screenimage);
 
         if (currentPlayer != null)
         {
