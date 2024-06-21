@@ -10,11 +10,16 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
+<<<<<<< HEAD
   - Player
   - 
+=======
+  - Ground
+  - Hill
+>>>>>>> Dev
   - 
   - 
   - 
