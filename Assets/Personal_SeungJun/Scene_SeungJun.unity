@@ -1617,9 +1617,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5208ace354d26a94b8d80584bc93f1fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 1006447981297442508, guid: d638940794ad74304b53dad72f51e7c9, type: 3}
+  playerPrefab: {fileID: 3894476139231397084, guid: d638940794ad74304b53dad72f51e7c9, type: 3}
   spawnPoint: {fileID: 721101317}
-  currentPlayer: {fileID: 1006447981297442508, guid: d638940794ad74304b53dad72f51e7c9, type: 3}
+  currentPlayer: {fileID: 3894476139231397084, guid: d638940794ad74304b53dad72f51e7c9, type: 3}
   parallaxBackgrounds:
   - {fileID: 1743905410}
   - {fileID: 1841293688}

@@ -3,10 +3,10 @@
 public class PlayerMovement : MonoBehaviour
 {
     private InputController controller;
-    private Rigidbody2D movementRigidbody;
-    private GroundCheck groundCheck;
+    public Rigidbody2D movementRigidbody;
+    public GroundCheck groundCheck;
 
-    private Vector2 movementDirection = Vector2.zero;
+    public Vector2 movementDirection = Vector2.zero;
     private bool canDoubleJump = false;
     public float jumpForce = 7f;
     private SpriteRenderer sprite;

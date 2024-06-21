@@ -9,7 +9,6 @@ public class CharacterAnimatorController : MonoBehaviour
     private static readonly int IsMoving = Animator.StringToHash("isMoving");
     private static readonly int IsJumping = Animator.StringToHash("isJumping");
     private static readonly int IsFalling = Animator.StringToHash("isFalling");
-    private static readonly int IsGrounded = Animator.StringToHash("isGrounded");
 
     private void Awake()
     {
@@ -27,17 +26,17 @@ public class CharacterAnimatorController : MonoBehaviour
     {
         animator.SetBool(IsMoving, playerMovement.movementDirection.x != 0);
 
-        if (playerMovement.movementRigidbody.velocity.y > 0 && !groundCheck.isGrounded && !groundCheck.isGroundedOnHill)
+        if (playerMovement.movementRigidbody.velocity.y > 0 && !groundCheck.GetGroundedState() && !groundCheck.GetHilledState())
         {
             animator.SetBool(IsJumping, true);
             animator.SetBool(IsFalling, false);
         }
-        else if (playerMovement.movementRigidbody.velocity.y < 0 && !groundCheck.isGrounded && !groundCheck.isGroundedOnHill)
+        else if (playerMovement.movementRigidbody.velocity.y < 0 && !groundCheck.GetGroundedState() && !groundCheck.GetHilledState())
         {
             animator.SetBool(IsJumping, false);
             animator.SetBool(IsFalling, true);
         }
-        else if (groundCheck.isGrounded || groundCheck.isGroundedOnHill)
+        else if (groundCheck.GetGroundedState() || groundCheck.GetHilledState())
         {
             animator.SetBool(IsJumping, false);
             animator.SetBool(IsFalling, false);
