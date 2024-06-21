@@ -3,12 +3,12 @@
 public class PlayerMovement : MonoBehaviour
 {
     private InputController controller;
-    private Rigidbody2D movementRigidbody;
-    private GroundCheck groundCheck;
+    public Rigidbody2D movementRigidbody;
+    public GroundCheck groundCheck;
 
-    private Vector2 movementDirection = Vector2.zero;
+    public Vector2 movementDirection = Vector2.zero;
     private bool canDoubleJump = false;
-    private float jumpForce = 7f;
+    public float jumpForce = 7f;
     private SpriteRenderer sprite;
 
     [SerializeField] private float moveSpeed = 8.0f;
@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (groundCheck.isGrounded || groundCheck.isGroundedOnHill)
+        if (groundCheck.GetGroundedState() || groundCheck.GetHilledState())
         {
             movementRigidbody.velocity = new Vector2(movementRigidbody.velocity.x, jumpForce);
             canDoubleJump = true;
