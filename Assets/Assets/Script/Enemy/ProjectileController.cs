@@ -58,12 +58,6 @@ public class ProjectileController : MonoBehaviour
             {
                 // 충돌한 오브젝트의 체력을 감소시킵니다.
                 bool isAttackApplied = healthSystem.ChangeHealth(-attackData.power);
-
-                // 넉백이 활성화된 경우, ★드★디★어★ 넉백을 적용합니다.
-                if (isAttackApplied && attackData.isOnKnockback)
-                {
-                    ApplyKnockback(collision);
-                }
             }
             // 충돌한 지점에서 프로젝타일을 파괴합니다.
             DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestory);
@@ -75,14 +69,7 @@ public class ProjectileController : MonoBehaviour
     {
         return layerMask == (layerMask | (1 << objectLayer));
     }
-    private void ApplyKnockback(Collider2D collision)
-    {
-        TopDownMovement movement = collision.GetComponent<TopDownMovement>();
-        if (movement != null)
-        {
-            //movement.ApplyKnockback(transform, attackData.knockbackPower, attackData.knockbackTime);
-        }
-    }
+
     public void InitializeAttack(Vector2 direction, RangedAttackSo attackData)
     {
         this.attackData = attackData;

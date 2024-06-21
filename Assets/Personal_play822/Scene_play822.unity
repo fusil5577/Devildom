@@ -5944,6 +5944,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 9121963069212718781, guid: d638940794ad74304b53dad72f51e7c9, type: 3}
+      propertyPath: hillLayerMask.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9121963069212718781, guid: d638940794ad74304b53dad72f51e7c9, type: 3}
+      propertyPath: groundLayerMask.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6196,7 +6204,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1073469870808982595, guid: 5564a8fe907952f43ac14d9555254b42, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2091226417852183024, guid: 5564a8fe907952f43ac14d9555254b42, type: 3}
       propertyPath: followRange
