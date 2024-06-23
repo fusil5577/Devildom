@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class BossMonster : MonoBehaviour
 {
-
-    public class BossSpawner : MonoBehaviour
-    {
-        public GameObject bossPrefab;
+        public GameObject BossMonsterPrefab;
         public Transform[] spawnPoints;
 
 
         void Start()
     {
-        
+        StartCoroutine(SpawnBossRoutine());
     }
-
-    // Update is called once per frame
-    void Update()
+    IEnumerator SpawnBossRoutine()
     {
-        
+        while (true)
+        {
+            int spawnIndex = Random.Range(0, spawnPoints.Length);
+            Vector3 spawnPosition = spawnPoints[spawnIndex].position;
+
+            GameObject newBoss = Instantiate(BossMonsterPrefab, spawnPosition, Quaternion.identity);
+        }
     }
 }
