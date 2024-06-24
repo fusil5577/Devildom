@@ -9,6 +9,7 @@ public class SceneChanger : MonoBehaviour
     // �ΰ��� ������ �̵�
     public void LoadMainScene()
     {
+        AudioManager.Instance.PlayButtonClickSound();
         SceneManager.LoadScene("MainScene");
         Time.timeScale = 1.0f;
     }
@@ -22,16 +23,19 @@ public class SceneChanger : MonoBehaviour
     // ���� ������
     public void GameExit()
     {
+        AudioManager.Instance.PlayButtonClickSound();
         Application.Quit();
     }
 
     public void SettingBtn()
     {
+        AudioManager.Instance.PlayButtonClickSound();
         SettingPanel.SetActive(true);
     }
 
     public void SettingPanelEnd()
     {
+        AudioManager.Instance.PlayButtonClickSound();
         SettingPanel.SetActive(false);
     }
 }
