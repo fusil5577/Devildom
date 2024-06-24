@@ -3,23 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Ground
-  - Monster
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
-<<<<<<< HEAD
-  - Player
   - 
-=======
-  - Ground
-  - Hill
->>>>>>> Dev
+  - 
   - 
   - 
   - 
