@@ -66,9 +66,9 @@ public class TestManager : MonoBehaviour // 임시 게임매니저
         }
     }
 
-    private IEnumerator RespawnPlayer()
+    private IEnumerator RespawnPlayer() // 3초 후 플레이어 리스폰
     {
-        yield return new WaitForSeconds(3); // 3초 후에 플레이어를 리스폰
+        yield return new WaitForSeconds(3);
         SpawnPlayer();
     }
 }
