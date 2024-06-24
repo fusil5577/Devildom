@@ -7,6 +7,9 @@ public class BossZoneTrigger : MonoBehaviour
     public Collider2D[] wallColliders;
     private CameraFollow cameraFollow;
 
+    public AudioClip BossBgm;
+    private bool hasEnteredBossZone = false;
+
     private void Start()
     {
         cameraFollow = Camera.main.GetComponent<CameraFollow>();
@@ -20,9 +23,17 @@ public class BossZoneTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (!hasEnteredBossZone)
+            {
+                hasEnteredBossZone = true;
+
+                AudioManager.Instance.bgmSource.clip = BossBgm;
+                AudioManager.Instance.bgmSource.Play();
+            }
+
             if (cameraFollow != null)
             {
-                TestManager.Instance.fadeImage.FadeOut(TestManager.Instance.Screenimage);
+                GameManager.Instance.fadeImage.FadeOut(GameManager.Instance.Screenimage);
 
                 Vector3 minBounds = cameraLimitCollider.bounds.min;
                 Vector3 maxBounds = cameraLimitCollider.bounds.max;
@@ -36,7 +47,7 @@ public class BossZoneTrigger : MonoBehaviour
                     }
                 }
 
-                TestManager.Instance.fadeImage.FadeIn(TestManager.Instance.Screenimage);
+                GameManager.Instance.fadeImage.FadeIn(GameManager.Instance.Screenimage);
             }
         }
     }
