@@ -8,7 +8,7 @@ public class InputController : MonoBehaviour
 
     public void CallMoveEvent(Vector2 direction)
     {
-        if (!TestManager.Instance.isTalkingToNPC)
+        if (!GameManager.Instance.isTalkingToNPC)
         {
             OnMoveEvent?.Invoke(direction);
         }

@@ -17,9 +17,9 @@ public class CameraFollow : MonoBehaviour
 
     private void Update()
     {
-        if (mainCameraTransform != null && TestManager.Instance.currentPlayer != null)
+        if (mainCameraTransform != null && GameManager.Instance.currentPlayer != null)
         {
-            Vector3 playerPosition = TestManager.Instance.currentPlayer.transform.position;
+            Vector3 playerPosition = GameManager.Instance.currentPlayer.transform.position;
             Vector3 mainCameraPosition = new Vector3(playerPosition.x, playerPosition.y + positionY, positionZ);
 
             if (isInBossZone)

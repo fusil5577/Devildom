@@ -6,9 +6,11 @@ public class Monster : MonoBehaviour
 {
     protected Vector2 movementDirection = Vector2.zero;
     protected CharacterStatHandler characterStatHandler;
+    public Rigidbody2D movementRigidbody;
     private void Awake()
     {
         characterStatHandler = GetComponent<CharacterStatHandler>();
+        movementRigidbody = GetComponent<Rigidbody2D>();
     }
         void Start()
     {
@@ -31,8 +33,8 @@ public class Monster : MonoBehaviour
 
     private void ApplyMonvement(Vector2 direction)
     {
-        direction = direction * characterStatHandler.CurrentStat.speed * Time.deltaTime;
+        direction = direction * characterStatHandler.CurrentStat.speed ;
 
-        transform.position += new Vector3(direction.x, 0);
+        movementRigidbody.velocity = new Vector2(direction.x, movementRigidbody.velocity.y);
     }
 }

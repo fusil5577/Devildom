@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class BossMonster : MonoBehaviour
 {
-        public GameObject BossMonsterPrefab;
-        public Transform[] spawnPoints;
-
-
-        void Start()
+    public GameObject BossMonsterPrefab;
+    public Transform[] spawnPoints;
+    void Start()
     {
         StartCoroutine(SpawnBossRoutine());
     }
