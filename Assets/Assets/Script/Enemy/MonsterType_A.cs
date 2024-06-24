@@ -6,6 +6,7 @@ using UnityEngine;
 public class MonsterType_A : Monster
 {
     GameManager gameManager;
+    public MosnterAnimation mosnterAnimation;
     protected bool IsAttacking { get; set; }
 
     private float timeSinceLastAttack = float.MaxValue;
@@ -41,6 +42,7 @@ public class MonsterType_A : Monster
         if (isCollidingWithTarget)
         {
             ApplyHealthChange();
+            mosnterAnimation.isAlive = false;
         }
 
         Vector2 direction = Vector2.zero;
@@ -120,6 +122,5 @@ public class MonsterType_A : Monster
         {
             autoMovedir = 1;
         }
-
     }
 }

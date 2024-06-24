@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     public CameraFollow cameraFollow;
     public Image Screenimage;
     public FadeImage fadeImage;
-
     public bool isTalkingToNPC = false;
 
     public AudioClip deathSound;
@@ -26,6 +25,7 @@ public class GameManager : MonoBehaviour
     public void StartTalkingToNPC()
     {
         isTalkingToNPC = true;
+        
     }
 
     public void StopTalkingToNPC()

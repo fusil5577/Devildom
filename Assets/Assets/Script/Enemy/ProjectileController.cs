@@ -81,7 +81,6 @@ public class ProjectileController : MonoBehaviour
 
         transform.right = this.direction;
     
-
         isReady = true;
     }
 
