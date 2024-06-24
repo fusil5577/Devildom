@@ -8,7 +8,7 @@ public class PlayerAttackBox : MonoBehaviour
     public void Initialize(PlayerDefaultAttackSO attackData)
     {
         this.attackData = attackData;
-        Destroy(gameObject, attackData.delay);
+        Destroy(gameObject, 0.1f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

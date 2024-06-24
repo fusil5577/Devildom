@@ -69,7 +69,6 @@ public class ProjectileController : MonoBehaviour
     {
         return layerMask == (layerMask | (1 << objectLayer));
     }
-
     public void InitializeAttack(Vector2 direction, RangedAttackSo attackData)
     {
         this.attackData = attackData;
@@ -81,6 +80,7 @@ public class ProjectileController : MonoBehaviour
 
         transform.right = this.direction;
     
+
         isReady = true;
     }
 

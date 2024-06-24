@@ -2,7 +2,7 @@
 
 public class PlayerMovement : MonoBehaviour
 {
-    private InputController controller;
+    public InputController controller;
     public Rigidbody2D movementRigidbody;
     public GroundCheck groundCheck;
     public GameObject playerAttackBoxPrefab;
@@ -56,7 +56,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Attack()
     {
-        Instantiate(playerAttackBoxPrefab);
+        PlayerDefaultAttackSO rangedAttackSo = characterStatHandler.CurrentStat.attackSO as PlayerDefaultAttackSO;
+             
+        GameObject obj = Instantiate(playerAttackBoxPrefab);
+        PlayerAttackBox abox = obj.GetComponent<PlayerAttackBox>();
+        abox.Initialize(rangedAttackSo);
+        controller.isAttacking = false;
+        
     }
 
     private void FixedUpdate()

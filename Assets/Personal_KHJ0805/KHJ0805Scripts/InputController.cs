@@ -13,7 +13,7 @@ public class InputController : MonoBehaviour
 
     protected CharacterStatHandler stats;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         stats = GetComponent<CharacterStatHandler>();
     }
@@ -48,10 +48,7 @@ public class InputController : MonoBehaviour
 
     public void CallMoveEvent(Vector2 direction)
     {
-        if (!GameManager.Instance.isTalkingToNPC)
-        {
-            OnMoveEvent?.Invoke(direction);
-        }
+      OnMoveEvent?.Invoke(direction);
     }
 
     public void CallJumpEvent()
