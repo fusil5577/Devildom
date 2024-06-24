@@ -63,9 +63,9 @@ public class UIManager : MonoBehaviour
         NPC npcController = currentNPC.GetComponent<NPC>();
         if (npcController != null && npcController.teleport)
         {
-            TestManager.Instance.fadeImage.FadeOut(TestManager.Instance.Screenimage);
+            GameManager.Instance.fadeImage.FadeOut(GameManager.Instance.Screenimage);
             npcController.Teleport();
-            TestManager.Instance.fadeImage.FadeIn(TestManager.Instance.Screenimage);
+            GameManager.Instance.fadeImage.FadeIn(GameManager.Instance.Screenimage);
         }
     }
 

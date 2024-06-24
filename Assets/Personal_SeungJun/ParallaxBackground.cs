@@ -12,7 +12,7 @@ public class ParallaxBackground : MonoBehaviour
         // 배경의 시작 위치 저장
         startPosition = new Vector2(transform.position.x, transform.position.y);
 
-        playerTransform = TestManager.Instance.currentPlayer.transform;
+        playerTransform = GameManager.Instance.currentPlayer.transform;
     }
 
     void Update()

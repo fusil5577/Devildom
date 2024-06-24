@@ -22,7 +22,7 @@ public class BossZoneTrigger : MonoBehaviour
         {
             if (cameraFollow != null)
             {
-                TestManager.Instance.fadeImage.FadeOut(TestManager.Instance.Screenimage);
+                GameManager.Instance.fadeImage.FadeOut(GameManager.Instance.Screenimage);
 
                 Vector3 minBounds = cameraLimitCollider.bounds.min;
                 Vector3 maxBounds = cameraLimitCollider.bounds.max;
@@ -36,7 +36,7 @@ public class BossZoneTrigger : MonoBehaviour
                     }
                 }
 
-                TestManager.Instance.fadeImage.FadeIn(TestManager.Instance.Screenimage);
+                GameManager.Instance.fadeImage.FadeIn(GameManager.Instance.Screenimage);
             }
         }
     }
