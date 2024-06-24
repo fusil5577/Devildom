@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class ParallaxBackground : MonoBehaviour
 {
-    public Transform playerTransform; // 플레이어의 Transform
-    public Vector2 parallaxSpeed = new Vector2(0.5f, 0.1f); // 배경의 X축과 Y축 이동 속도
+    public Transform playerTransform; // 플레이어 위치
+    public Vector2 parallaxSpeed = new Vector2(0.5f, 0.1f); // 배경의 X축, Y축 이동 속도
 
     private Vector2 startPosition; // 시작 위치
 

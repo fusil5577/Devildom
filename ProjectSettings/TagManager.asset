@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Monster
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -13,13 +14,8 @@ TagManager:
   - Player
   - Water
   - UI
-<<<<<<< HEAD
-  - Player
-  - 
-=======
   - Ground
   - Hill
->>>>>>> Dev
   - 
   - 
   - 
