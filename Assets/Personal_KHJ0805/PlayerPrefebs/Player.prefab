@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb72f44083074a80836e047109bb0ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
   movementRigidbody: {fileID: 0}
   groundCheck: {fileID: 0}
   playerAttackBoxPrefab: {fileID: 2190496644833887395}
