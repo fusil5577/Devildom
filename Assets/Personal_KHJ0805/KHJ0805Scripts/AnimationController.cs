@@ -9,12 +9,17 @@ public class CharacterAnimatorController : MonoBehaviour
     private static readonly int IsMoving = Animator.StringToHash("isMoving");
     private static readonly int IsJumping = Animator.StringToHash("isJumping");
     private static readonly int IsFalling = Animator.StringToHash("isFalling");
+    private static readonly int IsAttacking = Animator.StringToHash("isAttacking");
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         playerMovement = GetComponentInParent<PlayerMovement>();
         groundCheck = GetComponentInParent<GroundCheck>();
+    }
+    private void Start()
+    {
+        playerMovement.controller.OnAttackEvent += TriggerAttackAnimation;
     }
 
     private void Update()
@@ -41,5 +46,12 @@ public class CharacterAnimatorController : MonoBehaviour
             animator.SetBool(IsJumping, false);
             animator.SetBool(IsFalling, false);
         }
+        
+
+    }
+
+    public void TriggerAttackAnimation()
+    {
+        animator.SetTrigger(IsAttacking);
     }
 }

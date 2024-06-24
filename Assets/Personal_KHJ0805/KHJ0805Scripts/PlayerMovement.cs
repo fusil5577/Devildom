@@ -2,29 +2,28 @@
 
 public class PlayerMovement : MonoBehaviour
 {
-    private InputController controller;
+    public InputController controller;
     public Rigidbody2D movementRigidbody;
     public GroundCheck groundCheck;
+    public GameObject playerAttackBoxPrefab;
+    private CharacterStatHandler characterStatHandler;
 
     public Vector2 movementDirection = Vector2.zero;
     private bool canDoubleJump = false;
     public float jumpForce = 7f;
     private SpriteRenderer sprite;
 
-    [SerializeField] private float moveSpeed = 8.0f;
-
     private void Awake()
     {
         controller = GetComponent<InputController>();
         movementRigidbody = GetComponent<Rigidbody2D>();
-        groundCheck = GetComponentInChildren<GroundCheck>(); // GroundCheck 컴포넌트를 가져옴
+        groundCheck = GetComponentInChildren<GroundCheck>();
         sprite = GetComponentInChildren<SpriteRenderer>();
-    }
+        characterStatHandler = GetComponent<CharacterStatHandler>();
 
-    private void Start()
-    {
         controller.OnMoveEvent += Move;
         controller.OnJumpEvent += Jump;
+        controller.OnAttackEvent += Attack;
     }
 
     private void Move(Vector2 direction)
@@ -55,6 +54,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void Attack()
+    {
+        PlayerDefaultAttackSO rangedAttackSo = characterStatHandler.CurrentStat.attackSO as PlayerDefaultAttackSO;
+             
+        GameObject obj = Instantiate(playerAttackBoxPrefab);
+        PlayerAttackBox abox = obj.GetComponent<PlayerAttackBox>();
+        abox.Initialize(rangedAttackSo);
+        controller.isAttacking = false;
+        
+    }
+
     private void FixedUpdate()
     {
         ApplyMovement(movementDirection);
@@ -62,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyMovement(Vector2 direction)
     {
-        direction = direction * moveSpeed;
+        direction *= characterStatHandler.CurrentStat.speed;
         movementRigidbody.velocity = new Vector2(direction.x, movementRigidbody.velocity.y);
     }
 }
