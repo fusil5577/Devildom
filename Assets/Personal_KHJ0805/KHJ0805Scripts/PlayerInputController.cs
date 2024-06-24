@@ -7,6 +7,7 @@ public class PlayerInputController : InputController
 
     private void Awake()
     {
+        base.Awake();
         camera = Camera.main;
     }
 
@@ -23,6 +24,7 @@ public class PlayerInputController : InputController
 
     public void OnAttack()
     {
-        CallAttackEvent();
+        isAttacking = true;
+//        CallAttackEvent();
     }
 }
