@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AttackData
   m_EditorClassIdentifier: Assembly-CSharp::AttackSo
   size: 1
-  delay: 1
+  delay: 5
   power: 1
   speed: 1
   target:
