@@ -5,22 +5,33 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    // ÀÎ°ÔÀÓ ¾ÀÀ¸·Î ÀÌµ¿
+    public GameObject SettingPanel;
+    // ï¿½Î°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
     public void LoadMainScene()
     {
         SceneManager.LoadScene("MainScene");
         Time.timeScale = 1.0f;
     }
 
-    // ÀÎÆ®·Î ¾ÀÀ¸·Î ÀÌµ¿
+    // ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
     public void LoadStartScene()
     {
         SceneManager.LoadScene("StartScene");
     }
 
-    // °ÔÀÓ ³ª°¡±â
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public void GameExit()
     {
         Application.Quit();
+    }
+
+    public void SettingBtn()
+    {
+        SettingPanel.SetActive(true);
+    }
+
+    public void SettingPanelEnd()
+    {
+        SettingPanel.SetActive(false);
     }
 }
