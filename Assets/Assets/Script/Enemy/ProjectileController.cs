@@ -42,15 +42,7 @@ public class ProjectileController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // levelCollisionLayer에 포함되는 레이어인지 확인합니다.
-        if (IsLayerMatched(levelCollisionLayer.value, collision.gameObject.layer))
-        {
-            // 벽에서는 충돌한 지점으로부터 약간 앞 쪽에서 발사체를 파괴합니다.
-            Vector2 destroyPosition = collision.ClosestPoint(transform.position) - direction * .2f;
-            DestroyProjectile(destroyPosition, fxOnDestory);
-        }
-        // _attackData.target에 포함되는 레이어인지 확인합니다.
-        else if (IsLayerMatched(attackData.target.value, collision.gameObject.layer))
+         if (collision.gameObject.CompareTag("Player"))
         {
             // 충돌한 오브젝트에서 HealthSystem 컴포넌트를 가져옵니다.
             HealthSystem healthSystem = collision.GetComponent<HealthSystem>();
