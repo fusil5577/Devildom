@@ -58,10 +58,8 @@ public class HealthSystem : MonoBehaviour
 
         timeSinceLastChange = 0f;
         CurrentHealth += change;
-        // [최솟값을 0, 최댓값을 MaxHealth로 하는 구문]
+
         CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
-        // CurrentHealth = CurrentHealth > MaxHealth ? MaxHealth : CurrentHealth;
-        // CurrentHealth = CurrentHealth < 0 ? 0 : CurrentHealth; 와 같아요!
 
         if (CurrentHealth <= 0f)
         {
@@ -78,7 +76,6 @@ public class HealthSystem : MonoBehaviour
             OnDamage?.Invoke();
             isAttacked = true;
         }
-
 
         return true;
     }

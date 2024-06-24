@@ -119,7 +119,6 @@ GameObject:
   - component: {fileID: 6731902131984722927}
   - component: {fileID: 956257543193829547}
   - component: {fileID: 3825814654472326165}
-  - component: {fileID: 6173137296377686973}
   m_Layer: 0
   m_Name: MonsterType_B
   m_TagString: Monster
@@ -234,33 +233,6 @@ MonoBehaviour:
   followRange: 9.5
   shootRange: 5
   targetTag: Player
-  fireBall: {fileID: 0}
+  fireBall: {fileID: 1860706049015914, guid: 0b0c27137eb4d504096874b80ace66bd, type: 3}
   projectileSpawnPosition: {fileID: 2614032591423947326}
   characterRenderer: {fileID: 8425964324721249683}
---- !u!50 &6173137296377686973
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6761450222799685686}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
