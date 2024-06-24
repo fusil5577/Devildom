@@ -10,12 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9150000584072665735}
   - component: {fileID: 4805090731358481740}
-  - component: {fileID: 7517522595647567319}
-  - component: {fileID: 1907993720127442595}
-  - component: {fileID: 373673675883787845}
   - component: {fileID: 3905276807516241571}
   - component: {fileID: 4914739415520410152}
-  - component: {fileID: 2667864198511394047}
+  - component: {fileID: -9124638392437299728}
   m_Layer: 0
   m_Name: BossMonster
   m_TagString: Monster
@@ -84,45 +81,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.1382885, y: 2.9357674}
   m_EdgeRadius: 0
---- !u!114 &7517522595647567319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420813450134863098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4de5a6ed28dca0d45983ec5293285f3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followRange: 2
-  targetTag: Player
-  characterRenderer: {fileID: 4662074219481210592}
---- !u!114 &1907993720127442595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420813450134863098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f942b0cbee4a806498041aa3bc2b35e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &373673675883787845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420813450134863098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f84efadca3a32f34db2afb56c277fd2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3905276807516241571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,11 +108,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseStats:
     statsChangeType: 0
-    maxHealth: 1
+    maxHealth: 5
     speed: 10
     attackSO: {fileID: 11400000, guid: 26ad413cf3414044e8febc188918acf1, type: 2}
   statsModifiers: []
---- !u!114 &2667864198511394047
+--- !u!114 &-9124638392437299728
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,9 +121,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1420813450134863098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea950ece088823541a823b3d244ff8ec, type: 3}
+  m_Script: {fileID: 11500000, guid: aafbc658892307c469de5377756dd774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followRange: 0
+  targetTag: Player
+  characterRenderer: {fileID: 4662074219481210592}
 --- !u!1 &7268407528828551594
 GameObject:
   m_ObjectHideFlags: 0

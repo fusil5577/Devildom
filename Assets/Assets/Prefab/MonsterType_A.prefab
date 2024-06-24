@@ -10,12 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3194836724473828476}
   - component: {fileID: 5637748188614344419}
-  - component: {fileID: 2091226417852183024}
-  - component: {fileID: 4617375864109669029}
-  - component: {fileID: 6896822394729490202}
   - component: {fileID: 3858995847824843105}
   - component: {fileID: 8606212186680276514}
-  - component: {fileID: 189769811785014847}
+  - component: {fileID: -7600666622683435562}
   m_Layer: 0
   m_Name: MonsterType_A
   m_TagString: Monster
@@ -84,45 +81,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.8559904, y: 2.6534684}
   m_EdgeRadius: 0
---- !u!114 &2091226417852183024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073469870808982595}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4de5a6ed28dca0d45983ec5293285f3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followRange: 2
-  targetTag: Player
-  characterRenderer: {fileID: 2056139335428693219}
---- !u!114 &4617375864109669029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073469870808982595}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f942b0cbee4a806498041aa3bc2b35e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6896822394729490202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073469870808982595}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f84efadca3a32f34db2afb56c277fd2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3858995847824843105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +112,7 @@ MonoBehaviour:
     speed: 10
     attackSO: {fileID: 11400000, guid: 26ad413cf3414044e8febc188918acf1, type: 2}
   statsModifiers: []
---- !u!114 &189769811785014847
+--- !u!114 &-7600666622683435562
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,9 +121,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1073469870808982595}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea950ece088823541a823b3d244ff8ec, type: 3}
+  m_Script: {fileID: 11500000, guid: aafbc658892307c469de5377756dd774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followRange: 0
+  targetTag: Player
+  characterRenderer: {fileID: 2056139335428693219}
 --- !u!1 &6929218711019502517
 GameObject:
   m_ObjectHideFlags: 0
