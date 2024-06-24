@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    private AudioSource bgmSource;
+    public AudioSource bgmSource;
     private AudioSource sfxSource;
 
     public AudioClip startSceneBgm;

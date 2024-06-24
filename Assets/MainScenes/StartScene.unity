@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 127764032}
   - component: {fileID: 127764031}
   - component: {fileID: 127764030}
+  - component: {fileID: 127764034}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -226,6 +227,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &127764034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127764029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48d6aa539b5f203438c9994fb1b2a23b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &266912591
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +323,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 266912596}
+      - m_Target: {fileID: 127764034}
         m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
         m_MethodName: LoadMainScene
         m_Mode: 1
@@ -619,9 +632,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f82e34a32804be7993bc72dedfe92f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSceneBgm: {fileID: 0}
-  mainSceneBgm: {fileID: 0}
-  buttonClickSfx: {fileID: 0}
+  bgmSource: {fileID: 0}
+  startSceneBgm: {fileID: 8300000, guid: e86e06ff3dfed3345a37afa90a4feb15, type: 3}
+  mainSceneBgm: {fileID: 8300000, guid: 92c40d772a23d2c4cb0e77bd03b2acc9, type: 3}
+  buttonClickSfx: {fileID: 8300000, guid: 394d8f8bb13670c49ac962a08dbc287b, type: 3}
   bgmGroup: {fileID: -4746382446245795163, guid: a3267f76252ad42baa97c64413d08426, type: 2}
   sfxGroup: {fileID: 5587402467476353852, guid: a3267f76252ad42baa97c64413d08426, type: 2}
   audioMixer: {fileID: 24100000, guid: a3267f76252ad42baa97c64413d08426, type: 2}

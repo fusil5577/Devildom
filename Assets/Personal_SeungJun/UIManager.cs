@@ -14,6 +14,10 @@ public class UIManager : MonoBehaviour
     private bool isDialogueActive;
     private GameObject currentNPC;
 
+    public AudioClip displayNextSound;
+
+    private AudioSource audioSource;
+
     private void Awake()
     {
         if (Instance == null)
@@ -26,6 +30,9 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
     }
 
     void Start()
@@ -37,6 +44,8 @@ public class UIManager : MonoBehaviour
     {
         if (isDialogueActive && Input.GetMouseButtonDown(0))
         {
+            audioSource.PlayOneShot(displayNextSound);
+
             DisplayNextLine();
         }
     }

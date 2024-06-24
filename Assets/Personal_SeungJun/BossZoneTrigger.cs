@@ -7,6 +7,9 @@ public class BossZoneTrigger : MonoBehaviour
     public Collider2D[] wallColliders;
     private CameraFollow cameraFollow;
 
+    public AudioClip BossBgm;
+    private bool hasEnteredBossZone = false;
+
     private void Start()
     {
         cameraFollow = Camera.main.GetComponent<CameraFollow>();
@@ -20,6 +23,14 @@ public class BossZoneTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (!hasEnteredBossZone)
+            {
+                hasEnteredBossZone = true;
+
+                AudioManager.Instance.bgmSource.clip = BossBgm;
+                AudioManager.Instance.bgmSource.Play();
+            }
+
             if (cameraFollow != null)
             {
                 GameManager.Instance.fadeImage.FadeOut(GameManager.Instance.Screenimage);

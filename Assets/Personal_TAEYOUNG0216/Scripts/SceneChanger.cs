@@ -8,14 +8,14 @@ public class SceneChanger : MonoBehaviour
     // 인게임 씬으로 이동
     public void LoadMainScene()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("MainScene");
         Time.timeScale = 1.0f;
     }
 
     // 인트로 씬으로 이동
-    public void LoadIntroScene()
+    public void LoadStartScene()
     {
-        SceneManager.LoadScene("IntroScene");
+        SceneManager.LoadScene("StartScene");
     }
 
     // 게임 나가기

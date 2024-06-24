@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
 
     public bool isTalkingToNPC = false;
 
+    public AudioClip deathSound;
+
+    private AudioSource audioSource;
+
     public void StartTalkingToNPC()
     {
         isTalkingToNPC = true;
@@ -35,6 +39,9 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         SpawnPlayer();
+
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
     }
     private void Start()
     {
@@ -56,6 +63,8 @@ public class GameManager : MonoBehaviour
     public void OnPlayerDeath()
     {
         fadeImage.FadeOut(Screenimage);
+
+        audioSource.PlayOneShot(deathSound);
 
         if (currentPlayer != null)
         {
