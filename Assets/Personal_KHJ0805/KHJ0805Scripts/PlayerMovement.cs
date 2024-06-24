@@ -5,40 +5,34 @@ public class PlayerMovement : MonoBehaviour
     private InputController controller;
     public Rigidbody2D movementRigidbody;
     public GroundCheck groundCheck;
+    public GameObject playerAttackBoxPrefab;
+    private CharacterStatHandler characterStatHandler;
 
     public Vector2 movementDirection = Vector2.zero;
     private bool canDoubleJump = false;
     public float jumpForce = 7f;
     private SpriteRenderer sprite;
 
-    [SerializeField] private float moveSpeed = 8.0f;
+    public PlayerDefaultAttackSO playerDefaultAttackSO;
 
     private void Awake()
     {
         controller = GetComponent<InputController>();
         movementRigidbody = GetComponent<Rigidbody2D>();
-        groundCheck = GetComponentInChildren<GroundCheck>(); // GroundCheck 컴포넌트를 가져옴
+        groundCheck = GetComponentInChildren<GroundCheck>();
         sprite = GetComponentInChildren<SpriteRenderer>();
-    }
+        characterStatHandler = GetComponent<CharacterStatHandler>();
 
-    private void Start()
-    {
         controller.OnMoveEvent += Move;
         controller.OnJumpEvent += Jump;
+        controller.OnAttackEvent += Attack;
     }
 
     private void Move(Vector2 direction)
     {
         movementDirection = direction;
 
-        if (direction.x > 0)
-        {
-            sprite.flipX = false;
-        }
-        else if (direction.x < 0)
-        {
-            sprite.flipX = true;
-        }
+        sprite.flipX = direction.x < 0;
     }
 
     private void Jump()
@@ -55,6 +49,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void Attack()
+    {
+        Instantiate(playerDefaultAttackSO);
+    }
+
     private void FixedUpdate()
     {
         ApplyMovement(movementDirection);
@@ -62,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyMovement(Vector2 direction)
     {
-        direction = direction * moveSpeed;
+        direction *= characterStatHandler.CurrentStat.speed;
         movementRigidbody.velocity = new Vector2(direction.x, movementRigidbody.velocity.y);
     }
 }

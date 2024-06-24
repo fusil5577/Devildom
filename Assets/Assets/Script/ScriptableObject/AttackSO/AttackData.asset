@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a81461683cff704c9a98ed6ded17632, type: 3}
   m_Name: AttackData
   m_EditorClassIdentifier: Assembly-CSharp::AttackSo
-  size: 0
-  delay: 0.5
+  size: 1
+  delay: 1
   power: 1
-  speed: 0
+  speed: 1
   target:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   isOnKnockback: 0
-  knockbackPower: 0
-  knockbackTime: 0
+  knockbackPower: 1
+  knockbackTime: 1

@@ -16,8 +16,13 @@ public class PlayerInputController : InputController
         CallMoveEvent(moveInput);
     }
 
-    public void OnJump(InputValue value)
+    public void OnJump()
     {
         CallJumpEvent();
+    }
+
+    public void OnAttack()
+    {
+        CallAttackEvent();
     }
 }
