@@ -13,8 +13,6 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 7f;
     private SpriteRenderer sprite;
 
-    public PlayerDefaultAttackSO playerDefaultAttackSO;
-
     private void Awake()
     {
         controller = GetComponent<InputController>();
@@ -32,7 +30,14 @@ public class PlayerMovement : MonoBehaviour
     {
         movementDirection = direction;
 
-        sprite.flipX = direction.x < 0;
+        if (direction.x > 0)
+        {
+            sprite.flipX = false;
+        }
+        else if (direction.x < 0)
+        {
+            sprite.flipX = true;
+        }
     }
 
     private void Jump()
@@ -51,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Attack()
     {
-        Instantiate(playerDefaultAttackSO);
+        Instantiate(playerAttackBoxPrefab);
     }
 
     private void FixedUpdate()

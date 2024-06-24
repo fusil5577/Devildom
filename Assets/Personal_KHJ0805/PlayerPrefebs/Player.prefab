@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2986749426606895363
 Transform:
   m_ObjectHideFlags: 0
@@ -218,7 +218,6 @@ MonoBehaviour:
   playerAttackBoxPrefab: {fileID: 2190496644833887395}
   movementDirection: {x: 0, y: 0}
   jumpForce: 14
-  playerDefaultAttackSO: {fileID: 11400000, guid: 1c2aefdaf46c44d73aaf664f9ad4428f, type: 2}
 --- !u!114 &9121963069212718781
 MonoBehaviour:
   m_ObjectHideFlags: 0
