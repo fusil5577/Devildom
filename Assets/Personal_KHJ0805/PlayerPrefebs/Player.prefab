@@ -221,6 +221,7 @@ MonoBehaviour:
   jumpForce: 14
   moveSound: {fileID: 8300000, guid: 680f1d2ce4deaad499324446047ede37, type: 3}
   jumpSound: {fileID: 8300000, guid: 694caba4a595eb24e8dc1a9ddeb9bb4b, type: 3}
+  attackSound: {fileID: 8300000, guid: 1dbe0c400fd982b43bdfae7535ba2d39, type: 3}
 --- !u!114 &9121963069212718781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,7 +240,6 @@ MonoBehaviour:
   hillLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  landSound: {fileID: 8300000, guid: 6928603be13e0034ebcf4eaa413d855c, type: 3}
 --- !u!70 &6829599866504528234
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

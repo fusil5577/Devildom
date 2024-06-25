@@ -15,9 +15,11 @@ public class PlayerMovement : MonoBehaviour
 
     public AudioClip moveSound;
     public AudioClip jumpSound;
+    public AudioClip attackSound;
 
     private AudioSource moveAudioSource;
     private AudioSource jumpAudioSource;
+    private AudioSource attackAudioSource;
 
     private void Awake()
     {
@@ -40,6 +42,10 @@ public class PlayerMovement : MonoBehaviour
         jumpAudioSource = gameObject.AddComponent<AudioSource>();
         jumpAudioSource.clip = jumpSound;
         jumpAudioSource.playOnAwake = false;
+
+        attackAudioSource = gameObject.AddComponent<AudioSource>();
+        attackAudioSource.clip = attackSound;
+        attackAudioSource.playOnAwake = false;
     }
 
     private void Update()
@@ -96,12 +102,13 @@ public class PlayerMovement : MonoBehaviour
     private void Attack()
     {
         PlayerDefaultAttackSO rangedAttackSo = characterStatHandler.CurrentStat.attackSO as PlayerDefaultAttackSO;
-             
+
+        attackAudioSource.Play();
+
         GameObject obj = Instantiate(playerAttackBoxPrefab);
         PlayerAttackBox abox = obj.GetComponent<PlayerAttackBox>();
         abox.Initialize(rangedAttackSo);
         controller.isAttacking = false;
-        
     }
 
     private void FixedUpdate()

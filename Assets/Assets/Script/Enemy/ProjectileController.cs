@@ -16,11 +16,18 @@ public class ProjectileController : MonoBehaviour
 
     public bool fxOnDestory = true;
 
+    public AudioClip fireBallHitSound;
+
+    private AudioSource fireBallHitAudioSource;
+
     private void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
 
+        fireBallHitAudioSource = gameObject.AddComponent<AudioSource>();
+        fireBallHitAudioSource.clip = fireBallHitSound;
+        fireBallHitAudioSource.playOnAwake = false;
     }
 
     private void Update()
@@ -51,8 +58,11 @@ public class ProjectileController : MonoBehaviour
                 // 충돌한 오브젝트의 체력을 감소시킵니다.
                 bool isAttackApplied = healthSystem.ChangeHealth(-attackData.power);
             }
+
+            fireBallHitAudioSource.Play(); // 파이어볼 히트
+
             // 충돌한 지점에서 프로젝타일을 파괴합니다.
-            DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestory); // 파이어볼 히트
+            DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestory);
         }
     }
 
