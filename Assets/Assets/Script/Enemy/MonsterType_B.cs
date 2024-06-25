@@ -65,11 +65,19 @@ public class MonsterType_B : Monster
     }
     protected float DistanceToTarget()
     {
+        if (ClosestTarget == null)
+        {
+            return float.MaxValue;
+        }
         return Vector3.Distance(transform.position, ClosestTarget.position);
     }
 
     protected Vector2 DirectionToTarget()
     {
+        if (ClosestTarget == null)
+        {
+            return Vector2.zero;
+        }
         return (ClosestTarget.position - transform.position).normalized;
     }
 

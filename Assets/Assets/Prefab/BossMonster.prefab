@@ -128,6 +128,7 @@ MonoBehaviour:
   followRange: 0
   targetTag: Player
   characterRenderer: {fileID: 4662074219481210592}
+  deathSoundMonsterA: {fileID: 8300000, guid: 6e6baa132818c3940be42808a5379d1e, type: 3}
 --- !u!1 &7268407528828551594
 GameObject:
   m_ObjectHideFlags: 0

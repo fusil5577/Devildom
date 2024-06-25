@@ -50,7 +50,6 @@ public class PlayerMovement : MonoBehaviour
         attackAudioSource.playOnAwake = false;
     }
 
-
     private void Start()
     {
         if (healthSystem != null)
@@ -65,7 +64,6 @@ public class PlayerMovement : MonoBehaviour
         {
             moveAudioSource.Stop();
         }
-
     }
 
     private void Move(Vector2 direction)
@@ -152,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
         {
             moveAudioSource.Play();
         }
-        Destroy(gameObject);
-        Time.timeScale = 0.0f;
+
+        GameManager.Instance.OnPlayerDeath();
     }
 }

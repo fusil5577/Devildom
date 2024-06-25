@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8425964324721249683}
   - component: {fileID: 4411257973601493316}
   - component: {fileID: 1832952792895502560}
+  - component: {fileID: 8181911841078628863}
   m_Layer: 8
   m_Name: MainSprite
   m_TagString: Untagged
@@ -120,6 +121,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAlive: 1
+--- !u!114 &8181911841078628863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6549705621566467976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a3daf1b5d930a943a581d1ce0486eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAlive: 1
 --- !u!1 &6761450222799685686
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +202,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.010736942, y: -0.61199796}
+  m_Offset: {x: -0.026001215, y: -0.30671108}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -199,7 +213,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.8559904, y: 2.6534684}
+  m_Size: {x: 2.014093, y: 3.2640421}
   m_EdgeRadius: 0
 --- !u!114 &6731902131984722927
 MonoBehaviour:
@@ -246,9 +260,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mosnterAnimation: {fileID: 1832952792895502560}
   followRange: 9.5
-  shootRange: 5
+  shootRange: 10
   targetTag: Player
   fireBall: {fileID: 1860706049015914, guid: 0b0c27137eb4d504096874b80ace66bd, type: 3}
   projectileSpawnPosition: {fileID: 2614032591423947326}
   characterRenderer: {fileID: 8425964324721249683}
-  fireballSound: {fileID: 8300000, guid: c97aec99c9c7fea46aad65527b22d569, type: 3}
+  fireballSound: {fileID: 8300000, guid: 03c3a270d71a9a840b8c9524329c18cb, type: 3}
