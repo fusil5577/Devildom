@@ -29,11 +29,16 @@ public class MonsterType_A : Monster
 
         healthSystem = GetComponent<HealthSystem>();
         healthSystem.OnDamage += OnDamage;
+        healthSystem.OnDeath += OnDeath;
         InvokeRepeating("AutoMove", 0f, 1.0f);
     }
     private void OnDamage()
     {
         followRange = 100f;
+    }
+    private void OnDeath()
+    {
+        mosnterAnimation.isAlive = false;
     }
     override  protected void FixedUpdate()
     {

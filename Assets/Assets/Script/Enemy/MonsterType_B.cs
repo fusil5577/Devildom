@@ -8,7 +8,8 @@ public class MonsterType_B : Monster
 {
     // Start is called before the first frame update
     GameManager gameManager;
-   
+    public MosnterAnimation mosnterAnimation;
+
     protected bool IsAttacking { get; set; }
 
     private float timeSinceLastAttack = float.MaxValue;
@@ -30,6 +31,8 @@ public class MonsterType_B : Monster
 
     private AudioSource fireballAudioSource;
 
+    private HealthSystem healthSystem;
+
     protected virtual void Start()
     {
         gameManager = GameManager.Instance;
@@ -38,10 +41,12 @@ public class MonsterType_B : Monster
         fireballAudioSource = gameObject.AddComponent<AudioSource>();
         fireballAudioSource.clip = fireballSound;
         fireballAudioSource.playOnAwake = false;
+        healthSystem = GetComponent<HealthSystem>();
+        healthSystem.OnDeath += OnDeath;
     }
-    private void OnDamage()
+    private void OnDeath()
     {
-        followRange = 100f;
+        mosnterAnimation.isAlive = false;
     }
     override protected void FixedUpdate()
     {
