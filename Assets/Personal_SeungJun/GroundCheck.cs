@@ -6,9 +6,13 @@ public class GroundCheck : MonoBehaviour
     public LayerMask hillLayerMask;
 
     private bool isGrounded = false;
-    private bool isHillded = false;
+    private bool isHilled = false;
+    private bool wasGrounded = false;
+    private bool wasHilled = false;
 
     private CapsuleCollider2D capsuleCollider2D;
+
+    public event System.Action OnGroundedEvent;
 
     private void Start()
     {
@@ -18,6 +22,14 @@ public class GroundCheck : MonoBehaviour
     private void Update()
     {
         CheckGrounded();
+
+        if ((isGrounded && !wasGrounded) || (isHilled && !wasHilled))
+        {
+            OnGroundedEvent?.Invoke();
+        }
+
+        wasGrounded = isGrounded;
+        wasHilled = isHilled;
     }
 
     private void CheckGrounded()
@@ -33,7 +45,7 @@ public class GroundCheck : MonoBehaviour
 
         // ¶¥¿¡ ´ê¾Æ ÀÖ´ÂÁö È®ÀÎ
         isGrounded = groundleftHit.collider != null || groundrightHit.collider != null;
-        isHillded = hillleftHit.collider != null || hillrightHit.collider != null;
+        isHilled = hillleftHit.collider != null || hillrightHit.collider != null;
     }
 
     public bool GetGroundedState()
@@ -43,6 +55,6 @@ public class GroundCheck : MonoBehaviour
 
     public bool GetHilledState()
     {
-        return isHillded;
+        return isHilled;
     }
 }

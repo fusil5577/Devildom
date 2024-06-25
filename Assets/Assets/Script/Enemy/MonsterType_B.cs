@@ -27,12 +27,20 @@ public class MonsterType_B : Monster
     [SerializeField] private SpriteRenderer characterRenderer;
     private float autoMovedir = -1;
 
+    public AudioClip fireballSound;
+
+    private AudioSource fireballAudioSource;
+
     private HealthSystem healthSystem;
 
     protected virtual void Start()
     {
         gameManager = GameManager.Instance;
         ClosestTarget = gameManager.Player;
+
+        fireballAudioSource = gameObject.AddComponent<AudioSource>();
+        fireballAudioSource.clip = fireballSound;
+        fireballAudioSource.playOnAwake = false;
         healthSystem = GetComponent<HealthSystem>();
         healthSystem.OnDeath += OnDeath;
     }
@@ -119,6 +127,8 @@ public class MonsterType_B : Monster
         GameObject obj = Instantiate(fireBall,transform);
         ProjectileController attackController = obj.gameObject.GetComponent<ProjectileController>();
         attackController.InitializeAttack(aimDirection, RangedAttackSO);
+
+        fireballAudioSource.Play();
     }
 }
 

@@ -48,7 +48,7 @@ public class InputController : MonoBehaviour
 
     public void CallMoveEvent(Vector2 direction)
     {
-      OnMoveEvent?.Invoke(direction);
+        OnMoveEvent?.Invoke(direction);
     }
 
     public void CallJumpEvent()

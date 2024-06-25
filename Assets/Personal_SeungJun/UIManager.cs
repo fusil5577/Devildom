@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -58,6 +59,10 @@ public class UIManager : MonoBehaviour
         isDialogueActive = true;
         dialoguePanel.SetActive(true);
         currentNPC = npc;
+
+        GameManager.Instance.fadeImage.FadeOut(GameManager.Instance.Screenimage);
+        GameManager.Instance.fadeImage.FadeIn(GameManager.Instance.Screenimage);
+
         DisplayNextLine();
     }
 
@@ -76,6 +81,9 @@ public class UIManager : MonoBehaviour
             npcController.Teleport();
             GameManager.Instance.fadeImage.FadeIn(GameManager.Instance.Screenimage);
         }
+
+        GameManager.Instance.fadeImage.FadeOut(GameManager.Instance.Screenimage);
+        GameManager.Instance.fadeImage.FadeIn(GameManager.Instance.Screenimage);
     }
 
     private void DisplayNextLine()
