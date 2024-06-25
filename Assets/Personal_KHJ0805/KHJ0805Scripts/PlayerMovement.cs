@@ -13,6 +13,12 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 7f;
     private SpriteRenderer sprite;
 
+    public AudioClip moveSound;
+    public AudioClip jumpSound;
+
+    private AudioSource moveAudioSource;
+    private AudioSource jumpAudioSource;
+
     private void Awake()
     {
         controller = GetComponent<InputController>();
@@ -24,6 +30,24 @@ public class PlayerMovement : MonoBehaviour
         controller.OnMoveEvent += Move;
         controller.OnJumpEvent += Jump;
         controller.OnAttackEvent += Attack;
+        groundCheck.OnGroundedEvent += OnLand;
+
+        moveAudioSource = gameObject.AddComponent<AudioSource>();
+        moveAudioSource.clip = moveSound;
+        moveAudioSource.loop = true;
+        moveAudioSource.playOnAwake = false;
+
+        jumpAudioSource = gameObject.AddComponent<AudioSource>();
+        jumpAudioSource.clip = jumpSound;
+        jumpAudioSource.playOnAwake = false;
+    }
+
+    private void Update()
+    {
+        if (!groundCheck.GetGroundedState() && !groundCheck.GetHilledState() && moveAudioSource.isPlaying)
+        {
+            moveAudioSource.Stop();
+        }
     }
 
     private void Move(Vector2 direction)
@@ -38,6 +62,18 @@ public class PlayerMovement : MonoBehaviour
         {
             sprite.flipX = true;
         }
+
+        if (groundCheck.GetGroundedState() || groundCheck.GetHilledState())
+        {
+            if (direction.magnitude > 0 && !moveAudioSource.isPlaying)
+            {
+                moveAudioSource.Play();
+            }
+            else if (direction.magnitude == 0 && moveAudioSource.isPlaying)
+            {
+                moveAudioSource.Stop();
+            }
+        }
     }
 
     private void Jump()
@@ -46,11 +82,14 @@ public class PlayerMovement : MonoBehaviour
         {
             movementRigidbody.velocity = new Vector2(movementRigidbody.velocity.x, jumpForce);
             canDoubleJump = true;
+            moveAudioSource.Stop();
+            jumpAudioSource.Play();
         }
         else if (canDoubleJump)
         {
             movementRigidbody.velocity = new Vector2(movementRigidbody.velocity.x, jumpForce);
             canDoubleJump = false;
+            jumpAudioSource.Play();
         }
     }
 
@@ -74,5 +113,13 @@ public class PlayerMovement : MonoBehaviour
     {
         direction *= characterStatHandler.CurrentStat.speed;
         movementRigidbody.velocity = new Vector2(direction.x, movementRigidbody.velocity.y);
+    }
+
+    private void OnLand()
+    {
+        if (movementDirection.magnitude > 0)
+        {
+            moveAudioSource.Play();
+        }
     }
 }

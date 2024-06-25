@@ -26,10 +26,18 @@ public class MonsterType_B : Monster
     [SerializeField] private SpriteRenderer characterRenderer;
     private float autoMovedir = -1;
 
+    public AudioClip fireballSound;
+
+    private AudioSource fireballAudioSource;
+
     protected virtual void Start()
     {
         gameManager = GameManager.Instance;
         ClosestTarget = gameManager.Player;
+
+        fireballAudioSource = gameObject.AddComponent<AudioSource>();
+        fireballAudioSource.clip = fireballSound;
+        fireballAudioSource.playOnAwake = false;
     }
     private void OnDamage()
     {
@@ -114,6 +122,8 @@ public class MonsterType_B : Monster
         GameObject obj = Instantiate(fireBall,transform);
         ProjectileController attackController = obj.gameObject.GetComponent<ProjectileController>();
         attackController.InitializeAttack(aimDirection, RangedAttackSO);
+
+        fireballAudioSource.Play();
     }
 }
 

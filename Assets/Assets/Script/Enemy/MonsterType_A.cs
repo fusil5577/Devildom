@@ -43,6 +43,7 @@ public class MonsterType_A : Monster
         {
             ApplyHealthChange();
             mosnterAnimation.isAlive = false;
+            // 몬스터 죽음
         }
 
         Vector2 direction = Vector2.zero;

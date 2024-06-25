@@ -60,7 +60,7 @@ public class ProjectileController : MonoBehaviour
                 bool isAttackApplied = healthSystem.ChangeHealth(-attackData.power);
             }
             // 충돌한 지점에서 프로젝타일을 파괴합니다.
-            DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestory);
+            DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestory); // 파이어볼 히트
         }
     }
 
