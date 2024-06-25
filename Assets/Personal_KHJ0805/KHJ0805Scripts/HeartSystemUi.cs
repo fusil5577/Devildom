@@ -35,7 +35,7 @@ public class HeartSystemUi : MonoBehaviour
 
         for (int i = 0; i < heartObjects.Count; i++)
         {
-            if (i < currentHealth)
+            if (i > currentHealth - 1)
             {
                 heartObjects[i].gameObject.GetComponent<Image>().sprite = emptyHeart.GetComponent<Image>().sprite;
             }
