@@ -151,8 +151,6 @@ public class PlayerMovement : MonoBehaviour
             moveAudioSource.Play();
         }
 
-        Destroy(this.gameObject);
-
         GameManager.Instance.OnPlayerDeath();
     }
 }

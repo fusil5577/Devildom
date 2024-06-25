@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     private AudioSource audioSource;
 
+    public bool IsPlayerAlive = true;
+
     public void StartTalkingToNPC()
     {
         isTalkingToNPC = true;
@@ -44,8 +46,7 @@ public class GameManager : MonoBehaviour
         audioSource.playOnAwake = false;
     }
     private void Start()
-    {
-        
+    {        
         fadeImage.FadeIn(Screenimage);
     }
 
@@ -66,8 +67,11 @@ public class GameManager : MonoBehaviour
 
         audioSource.PlayOneShot(deathSound);
 
+        IsPlayerAlive = false;
+
         if (currentPlayer != null)
         {
+            Destroy(currentPlayer);
             StartCoroutine(RespawnPlayer());
         }
     }
@@ -76,5 +80,6 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         SpawnPlayer();
+        IsPlayerAlive = true;
     }
 }

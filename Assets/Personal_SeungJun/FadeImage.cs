@@ -6,8 +6,8 @@ public class FadeImage : MonoBehaviour
 {
     private Coroutine currentFadeCoroutine;  // 현재 진행 중인 페이드 Coroutine
 
-    private float FadeOutDuration = 2f;  // 페이드 아웃이 진행되는 시간
-    private float FadeInDuration = 2f;  // 페이드 인이 진행되는 시간
+    private float FadeOutDuration = 1.5f;  // 페이드 아웃이 진행되는 시간
+    private float FadeInDuration = 1.5f;  // 페이드 인이 진행되는 시간
 
     // 페이드 아웃 (흐려짐)
     public void FadeOut(Image fadeOutimage)

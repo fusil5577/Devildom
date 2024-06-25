@@ -265,4 +265,4 @@ MonoBehaviour:
   fireBall: {fileID: 1860706049015914, guid: 0b0c27137eb4d504096874b80ace66bd, type: 3}
   projectileSpawnPosition: {fileID: 2614032591423947326}
   characterRenderer: {fileID: 8425964324721249683}
-  fireballSound: {fileID: 0}
+  fireballSound: {fileID: 8300000, guid: 03c3a270d71a9a840b8c9524329c18cb, type: 3}

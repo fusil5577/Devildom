@@ -128,6 +128,9 @@ MonoBehaviour:
   playerAttackBoxPrefab: {fileID: 7208424943366891247, guid: 6867229d908434b92b37beef26519f5e, type: 3}
   movementDirection: {x: 0, y: 0}
   jumpForce: 14
+  moveSound: {fileID: 8300000, guid: 680f1d2ce4deaad499324446047ede37, type: 3}
+  jumpSound: {fileID: 8300000, guid: 694caba4a595eb24e8dc1a9ddeb9bb4b, type: 3}
+  attackSound: {fileID: 8300000, guid: 1dbe0c400fd982b43bdfae7535ba2d39, type: 3}
 --- !u!114 &9121963069212718781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseStats:
     statsChangeType: 0
-    maxHealth: 100
+    maxHealth: 5
     speed: 8
     attackSO: {fileID: 11400000, guid: 1c2aefdaf46c44d73aaf664f9ad4428f, type: 2}
   statsModifiers: []
