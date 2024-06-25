@@ -12,27 +12,10 @@ public class InputController : MonoBehaviour
     private float timeSinceLastAttack = float.MaxValue;
 
     protected CharacterStatHandler stats;
-    protected GroundCheck groundCheck;
-
-    public AudioClip onMoveSound;
-    public AudioClip onJumpSound;
-    public AudioClip onAttackSound;
-
-    private AudioSource moveAudioSource;
-    private AudioSource audioSource;
 
     protected virtual void Awake()
     {
         stats = GetComponent<CharacterStatHandler>();
-        groundCheck = GetComponent<GroundCheck>();
-
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.playOnAwake = false;
-
-        moveAudioSource = gameObject.AddComponent<AudioSource>();
-        moveAudioSource.clip = onMoveSound;
-        moveAudioSource.loop = true;
-        moveAudioSource.playOnAwake = false;
     }
 
     private void Update()
@@ -60,29 +43,16 @@ public class InputController : MonoBehaviour
 
     public void CallAttackEvent()
     {
-        audioSource.PlayOneShot(onAttackSound);
-
         OnAttackEvent?.Invoke();
     }
 
     public void CallMoveEvent(Vector2 direction)
     {
         OnMoveEvent?.Invoke(direction);
-
-        if (groundCheck.GetGroundedState() || groundCheck.GetHilledState() && direction != Vector2.zero && !moveAudioSource.isPlaying)
-        {
-            moveAudioSource.Play();
-        }
-        else if (direction == Vector2.zero && moveAudioSource.isPlaying)
-        {
-            moveAudioSource.Stop();
-        }
     }
 
     public void CallJumpEvent()
     {
-        audioSource.PlayOneShot(onJumpSound);
-
         OnJumpEvent?.Invoke();
     }
 }
