@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     public GameObject dialoguePanel;
+    public GameObject endPanel;
     public TMP_Text dialogueText;
     public TMP_Text npcNameText;
     private string[] dialogueLines;
