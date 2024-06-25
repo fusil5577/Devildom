@@ -19,7 +19,9 @@ public class HeartSystemUi : MonoBehaviour
         InitializeHearts();
         healthSystem.OnDamage += UpdateHearts;
     }
-
+    private void Update()
+    {
+    }
     private void InitializeHearts()
     {
         for (int i = 0; i < healthSystem.MaxHealth; i++)
@@ -35,7 +37,7 @@ public class HeartSystemUi : MonoBehaviour
 
         for (int i = 0; i < heartObjects.Count; i++)
         {
-            if (i < currentHealth)
+            if (i >= currentHealth-1)
             {
                 heartObjects[i].gameObject.GetComponent<Image>().sprite = emptyHeart.GetComponent<Image>().sprite;
             }

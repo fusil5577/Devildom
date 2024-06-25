@@ -17,10 +17,17 @@ public class MonsterType_C : Monster
     protected Transform ClosestTarget { get; private set; }
 
     [SerializeField][Range(0f, 100f)] private float followRange;
+
     [SerializeField] private float shootRange = 5f;
+
     [SerializeField] private string targetTag = "Player";
+
     public GameObject fireBall;
+
     private bool isCollidingWithTarget;
+
+    float AttackTime = 0;
+    float AttackDelayTime = 3f;
 
     [SerializeField] private Transform projectileSpawnPosition;
     private Vector2 aimDirection = Vector2.right;
@@ -44,77 +51,60 @@ public class MonsterType_C : Monster
     override protected void FixedUpdate()
     {
         BossMonvement();
-
-        float distanceToTarget = DistanceToTarget();
-        Vector2 directionToTarget = DirectionToTarget();
-
-        UpdateEnemyState(distanceToTarget, directionToTarget);
-
     }
 
     private void Update()
     {
         HandleAttackDelay();
     }
-    protected float DistanceToTarget()
-    {
-        return Vector3.Distance(transform.position, ClosestTarget.position);
-    }
 
-    protected Vector2 DirectionToTarget()
-    {
-        return (ClosestTarget.position - transform.position).normalized;
-    }
-
-    private void Rotate(Vector2 direction)
-    {
-        characterRenderer.flipX = direction.x > 0;
-        aimDirection = direction;
-    }
-
-    private void UpdateEnemyState(float distance, Vector2 direction)
+    private void UpdateEnemyState()
     {
         IsAttacking = false; // 기본적으로 공격 상태를 false로 설정합니다.
-
-        if (distance <= followRange)
-        {
-            CheckIfNear(distance, direction);
-            Rotate(direction);
-        }
-    }
-
-    private void CheckIfNear(float distance, Vector2 direction)
-    {
-        if (distance <= shootRange)
-        {
-            TryShootAtTarget(direction);
-        }
-    }
-
-    private void TryShootAtTarget(Vector2 direction)
-    {
-
-        Rotate(direction);
-        movementDirection = Vector2.zero;
-        IsAttacking = true;
     }
 
     private void HandleAttackDelay()
     {
-        if (timeSinceLastAttack <= characterStatHandler.CurrentStat.attackSO.delay)
+        AttackTime += Time.deltaTime;
+        if (AttackTime >= AttackDelayTime)
         {
-            timeSinceLastAttack += Time.deltaTime;
-        }
-        else if (IsAttacking && timeSinceLastAttack >= characterStatHandler.CurrentStat.attackSO.delay)
-        {
-            timeSinceLastAttack = 0f;
-
             RangedAttackSo rangedAttackSo = characterStatHandler.CurrentStat.attackSO as RangedAttackSo;
-            CreateProjectile(rangedAttackSo);
+            CreateProjectileThreedirections(rangedAttackSo);
+            AttackTime = 0; 
         }
     }
 
-    private void CreateProjectile(RangedAttackSo RangedAttackSO)
+    private void CreateProjectileThreedirections(RangedAttackSo RangedAttackSO)
+    {
+        transform.position = projectileSpawnPosition.position;
+
+        for(int i = 0; i < 3;  i++)
+        {
+            switch(i)
+            {
+                case 0:
+                    GameObject obj = Instantiate(fireBall, transform);
+                    ProjectileController attackController = obj.gameObject.GetComponent<ProjectileController>();
+                    aimDirection = new Vector2(-1f,1f);
+                    attackController.InitializeAttack(aimDirection.normalized, RangedAttackSO);
+                    break; 
+                case 1:
+                    obj = Instantiate(fireBall, transform);
+                    attackController = obj.gameObject.GetComponent<ProjectileController>();
+                    aimDirection = new Vector2(-1f, 0f);
+                    attackController.InitializeAttack(aimDirection.normalized, RangedAttackSO);
+                    break; 
+                case 2:
+                    obj = Instantiate(fireBall, transform);
+                    attackController = obj.gameObject.GetComponent<ProjectileController>();
+                    aimDirection = new Vector2(-1f, -1f);
+                    attackController.InitializeAttack(aimDirection.normalized, RangedAttackSO);
+                    break;
+            }
+            
+        }
+    }
+    private void CreateProjectileEightdirections(RangedAttackSo RangedAttackSO)
     {
         transform.position = projectileSpawnPosition.position;
         GameObject obj = Instantiate(fireBall, transform);

@@ -68,7 +68,6 @@ public class ProjectileController : MonoBehaviour
 
         UpdateProjectileSprite();
         currentDuration = 0;
-        spriteRenderer.color = attackData.projectileColor;
 
         transform.right = this.direction;
     

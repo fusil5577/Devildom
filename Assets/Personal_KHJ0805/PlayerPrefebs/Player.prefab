@@ -239,7 +239,6 @@ MonoBehaviour:
   hillLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  landSound: {fileID: 8300000, guid: 6928603be13e0034ebcf4eaa413d855c, type: 3}
 --- !u!70 &6829599866504528234
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
