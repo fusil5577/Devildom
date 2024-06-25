@@ -22,10 +22,18 @@ public class MonsterType_A : Monster
     private HealthSystem collidingTargetHealthSystem;
     private float autoMovedir = -1;
 
+    public AudioClip deathSoundMonsterA;
+
+    private AudioSource monsterAdeathAudioSource;
+
     protected virtual void Start()
     {
         gameManager = GameManager.Instance;
         ClosestTarget = gameManager.Player;
+
+        monsterAdeathAudioSource = gameObject.AddComponent<AudioSource>();
+        monsterAdeathAudioSource.clip = deathSoundMonsterA;
+        monsterAdeathAudioSource.playOnAwake = false;
 
         healthSystem = GetComponent<HealthSystem>();
         healthSystem.OnDamage += OnDamage;
@@ -48,7 +56,7 @@ public class MonsterType_A : Monster
         {
             ApplyHealthChange();
             mosnterAnimation.isAlive = false;
-            // ¸ó½ºÅÍ Á×À½
+            monsterAdeathAudioSource.Play();
         }
 
         Vector2 direction = Vector2.zero;
