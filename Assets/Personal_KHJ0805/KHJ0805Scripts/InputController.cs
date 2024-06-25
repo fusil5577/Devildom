@@ -81,8 +81,11 @@ public class InputController : MonoBehaviour
 
     public void CallJumpEvent()
     {
-        audioSource.PlayOneShot(onJumpSound);
-
+        if(!groundCheck.GetGroundedState())
+        {
+            audioSource.PlayOneShot(onJumpSound);
+        }
+        
         OnJumpEvent?.Invoke();
     }
 }
