@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public Transform Player { get; private set; }
 
     public GameObject playerPrefab;
-    public Transform spawnPoint;
+    public Transform playerSpawnPoint;
     public GameObject currentPlayer;
     public ParallaxBackground[] parallaxBackgrounds;
     public CameraFollow cameraFollow;
@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     private AudioSource audioSource;
 
     public bool IsPlayerAlive = true;
+
+    public GameObject bossPrefab;
+    public Transform bossSpawnPoint;
 
     public void StartTalkingToNPC()
     {
@@ -50,13 +53,21 @@ public class GameManager : MonoBehaviour
         fadeImage.FadeIn(Screenimage);
     }
 
+    public void SpawnBoss()
+    {
+        if (bossPrefab != null && bossSpawnPoint != null)
+        {
+            Instantiate(bossPrefab, bossSpawnPoint.position, bossSpawnPoint.rotation);
+        }
+    }
+
     private void SpawnPlayer()
     {
         fadeImage.FadeIn(Screenimage);
 
-        if (playerPrefab != null && spawnPoint != null)
+        if (playerPrefab != null && playerSpawnPoint != null)
         {
-            currentPlayer = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
+            currentPlayer = Instantiate(playerPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation);
             Player = currentPlayer.transform;
         }
     }
@@ -81,5 +92,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         SpawnPlayer();
         IsPlayerAlive = true;
+    }
+
+    public void MoveStartSceneBtn()
+    {
+        AudioManager.Instance.MoveStartSceneBtn();
     }
 }

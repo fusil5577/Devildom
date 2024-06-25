@@ -27,6 +27,7 @@ public class BossZoneTrigger : MonoBehaviour
             {
                 hasEnteredBossZone = true;
 
+                GameManager.Instance.SpawnBoss();
                 AudioManager.Instance.bgmSource.clip = BossBgm;
                 AudioManager.Instance.bgmSource.Play();
             }

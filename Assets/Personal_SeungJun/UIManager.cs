@@ -22,6 +22,8 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        endPanel.SetActive(false);
+
         if (Instance == null)
         {
             Instance = this;
@@ -92,5 +94,10 @@ public class UIManager : MonoBehaviour
         {
             EndDialogue();
         }
+    }
+
+    public void ShowEndPanel()
+    {
+        endPanel.SetActive(true);
     }
 }

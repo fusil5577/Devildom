@@ -30,9 +30,9 @@ public class BossMonsterAnimation : MonoBehaviour
     }
     private void Monsterend()
     {
-        //몬스터 죽는다.
-        endPanel.SetActive(true);
         GameManager.Instance.fadeImage.FadeOut(GameManager.Instance.Screenimage);
+        UIManager.Instance.ShowEndPanel();
+        //몬스터 죽는다.
         Destroy(this.gameObject.transform.parent.gameObject);
     }
     public void Attack1()
