@@ -49,7 +49,7 @@ public class AudioManager : MonoBehaviour
         bgmSource.clip = startSceneBgm;
         bgmSource.Play();
 
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

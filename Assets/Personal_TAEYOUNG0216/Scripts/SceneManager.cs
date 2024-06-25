@@ -3,24 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneChanger : MonoBehaviour
+public class SceneManager : MonoBehaviour
 {
     public GameObject SettingPanel;
-    // �ΰ��� ������ �̵�
+
+    private static SceneManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void LoadMainScene()
     {
         AudioManager.Instance.PlayButtonClickSound();
-        SceneManager.LoadScene("MainScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
         Time.timeScale = 1.0f;
     }
 
-    // ��Ʈ�� ������ �̵�
     public void LoadStartScene()
     {
-        SceneManager.LoadScene("StartScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("StartScene");
     }
 
-    // ���� ������
     public void GameExit()
     {
         AudioManager.Instance.PlayButtonClickSound();
