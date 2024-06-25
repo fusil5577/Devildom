@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class MonsterType_C : Monster
 {
@@ -12,9 +13,11 @@ public class MonsterType_C : Monster
     protected bool IsAttacking { get; set; }
     private bool isMoveUp = true;
     private bool isMoveLate = false;
+    private bool isAttack = false;
 
     private float timeSinceLastAttack = float.MaxValue;
     protected Transform ClosestTarget { get; private set; }
+    protected Transform savepos;
 
     [SerializeField][Range(0f, 100f)] private float followRange;
 
@@ -43,10 +46,12 @@ public class MonsterType_C : Monster
         healthSystem = GetComponent<HealthSystem>();
         healthSystem.OnDeath += OnDeath;
         healthSystem.OnDamage += OnDamage;
+        savepos = transform;
     }
     private void OnDamage()
     {
         mosnterAnimation.Hit();
+        isAttack = true;
     }
     private void OnDeath()
     {
@@ -59,9 +64,22 @@ public class MonsterType_C : Monster
 
     private void Update()
     {
-        HandleAttackDelay();
+
     }
 
+    private void LateUpdate()
+    {
+        if (isAttack)
+        {
+            Vector2 direction = Vector2.zero;
+            movementDirection = direction;
+            mosnterAnimation.Attack2();
+            transform.DOMove(ClosestTarget.position, 1f).SetLoops(2,LoopType.Yoyo);
+            isAttack = false;
+        }
+        else
+            HandleAttackDelay();
+    }
     private void UpdateEnemyState()
     {
         IsAttacking = false; // 기본적으로 공격 상태를 false로 설정합니다.
@@ -116,7 +134,7 @@ public class MonsterType_C : Monster
     {
         if (isMoveLate)
         {
-            transform.DOPause();
+            //transform.DOPause();
             return;
         }
 
@@ -124,7 +142,7 @@ public class MonsterType_C : Monster
 
         if (isMoveUp == false)
         {
-         transform.DOMoveY(pos.y - 10f, 5).SetLoops(2, LoopType.Incremental);
+            transform.DOMoveY(pos.y - 10f, 5).SetLoops(2, LoopType.Incremental);
             if (pos.y <= 40f)
             {
                 isMoveUp = true;
@@ -159,6 +177,7 @@ public class MonsterType_C : Monster
             CreateProjectileThreedirections(rangedAttackSo);
         }
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

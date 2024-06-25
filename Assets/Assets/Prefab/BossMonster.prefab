@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3905276807516241571}
   - component: {fileID: 4914739415520410152}
   - component: {fileID: 5008972791284810034}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BossMonster
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d23171c32c810f44eb31037b9a3ffaea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mosnterAnimation: {fileID: 0}
+  mosnterAnimation: {fileID: 741399293196483263}
   followRange: 0
   shootRange: 5
   targetTag: Player
@@ -141,7 +141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5063235559504300353}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,8 @@ GameObject:
   - component: {fileID: 5929399969217563753}
   - component: {fileID: 4662074219481210592}
   - component: {fileID: 5895596208317582420}
-  m_Layer: 0
+  - component: {fileID: 741399293196483263}
+  m_Layer: 8
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,3 +270,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &741399293196483263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7268407528828551594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada932c603bb3b54283b61ad684f6041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAlive: 1
