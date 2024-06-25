@@ -20,7 +20,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   isOnKnockback: 1
-  knockbackPower: 5
+  knockbackPower: 1
   knockbackTime: 0.1
   bulletNameTag: Arrow
   duration: 5

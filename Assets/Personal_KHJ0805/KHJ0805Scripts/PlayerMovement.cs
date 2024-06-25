@@ -106,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
         attackAudioSource.Play();
 
         GameObject obj = Instantiate(playerAttackBoxPrefab);
+        playerAttackBoxPrefab.SetActive(true);
         PlayerAttackBox abox = obj.GetComponent<PlayerAttackBox>();
         abox.Initialize(rangedAttackSo);
         controller.isAttacking = false;
