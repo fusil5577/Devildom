@@ -59,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerDefaultAttackSO rangedAttackSo = characterStatHandler.CurrentStat.attackSO as PlayerDefaultAttackSO;
              
         GameObject obj = Instantiate(playerAttackBoxPrefab);
+        playerAttackBoxPrefab.SetActive(true);
         PlayerAttackBox abox = obj.GetComponent<PlayerAttackBox>();
         abox.Initialize(rangedAttackSo);
         controller.isAttacking = false;
