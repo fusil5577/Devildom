@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2623076728413453009}
   - component: {fileID: 8425964324721249683}
   - component: {fileID: 4411257973601493316}
+  - component: {fileID: 1832952792895502560}
   m_Layer: 0
   m_Name: MainSprite
   m_TagString: Untagged
@@ -106,6 +107,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1832952792895502560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6549705621566467976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a3daf1b5d930a943a581d1ce0486eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAlive: 1
 --- !u!1 &6761450222799685686
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,6 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7012b7edb5ae53d4ba29541d53aabc3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mosnterAnimation: {fileID: 1832952792895502560}
   followRange: 9.5
   shootRange: 5
   targetTag: Player
