@@ -129,7 +129,7 @@ MonoBehaviour:
   followRange: 0
   shootRange: 5
   targetTag: Player
-  fireBall: {fileID: 1117706797228658068, guid: 29830dbd6093d774a86999805f699359, type: 3}
+  fireBall: {fileID: 7670537298435958277, guid: 29830dbd6093d774a86999805f699359, type: 3}
   projectileSpawnPosition: {fileID: 5063235559504300353}
   characterRenderer: {fileID: 4662074219481210592}
 --- !u!1 &4460716797389758998
@@ -282,4 +282,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada932c603bb3b54283b61ad684f6041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  endPanel: {fileID: 0}
   isAlive: 1

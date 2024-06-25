@@ -69,6 +69,7 @@ public class MonsterType_C : Monster
 
     private void LateUpdate()
     {
+
         if (isAttack)
         {
             Vector2 direction = Vector2.zero;

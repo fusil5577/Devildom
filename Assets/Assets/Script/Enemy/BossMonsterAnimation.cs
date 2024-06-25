@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossMonsterAnimation : MonoBehaviour
 {
     private Animator animator;
+    public GameObject endPanel;
 
     private static readonly int isDeath = Animator.StringToHash("IsDeath");
     private static readonly int isAttack1 = Animator.StringToHash("IsAttack1");
@@ -28,6 +29,8 @@ public class BossMonsterAnimation : MonoBehaviour
     }
     private void Monsterend()
     {
+        endPanel.SetActive(true);
+        GameManager.Instance.fadeImage.FadeOut(GameManager.Instance.Screenimage);
         Destroy(this.gameObject.transform.parent.gameObject);
     }
     public void Attack1()

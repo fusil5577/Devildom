@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3a6bc932ed7bc46b26400b5a917e6e, type: 3}
   m_Name: BossRangedAttackData
   m_EditorClassIdentifier: 
-  size: 3
+  size: 2
   delay: 5
   power: 1
   speed: 30
