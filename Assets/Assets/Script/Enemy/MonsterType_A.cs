@@ -6,6 +6,7 @@ using UnityEngine;
 public class MonsterType_A : Monster
 {
     GameManager gameManager;
+    public MosnterAnimation mosnterAnimation;
     protected bool IsAttacking { get; set; }
 
     private float timeSinceLastAttack = float.MaxValue;
@@ -21,18 +22,31 @@ public class MonsterType_A : Monster
     private HealthSystem collidingTargetHealthSystem;
     private float autoMovedir = -1;
 
+    public AudioClip deathSoundMonsterA;
+
+    private AudioSource monsterAdeathAudioSource;
+
     protected virtual void Start()
     {
         gameManager = GameManager.Instance;
         ClosestTarget = gameManager.Player;
 
+        monsterAdeathAudioSource = gameObject.AddComponent<AudioSource>();
+        monsterAdeathAudioSource.clip = deathSoundMonsterA;
+        monsterAdeathAudioSource.playOnAwake = false;
+
         healthSystem = GetComponent<HealthSystem>();
         healthSystem.OnDamage += OnDamage;
+        healthSystem.OnDeath += OnDeath;
         InvokeRepeating("AutoMove", 0f, 1.0f);
     }
     private void OnDamage()
     {
         followRange = 100f;
+    }
+    private void OnDeath()
+    {
+        mosnterAnimation.isAlive = false;
     }
     override  protected void FixedUpdate()
     {
@@ -41,6 +55,8 @@ public class MonsterType_A : Monster
         if (isCollidingWithTarget)
         {
             ApplyHealthChange();
+            mosnterAnimation.isAlive = false;
+            monsterAdeathAudioSource.Play();
         }
 
         Vector2 direction = Vector2.zero;
@@ -120,6 +136,5 @@ public class MonsterType_A : Monster
         {
             autoMovedir = 1;
         }
-
     }
 }

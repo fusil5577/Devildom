@@ -16,11 +16,18 @@ public class ProjectileController : MonoBehaviour
 
     public bool fxOnDestory = true;
 
+    public AudioClip fireBallHitSound;
+
+    private AudioSource fireBallHitAudioSource;
+
     private void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
 
+        fireBallHitAudioSource = gameObject.AddComponent<AudioSource>();
+        fireBallHitAudioSource.clip = fireBallHitSound;
+        fireBallHitAudioSource.playOnAwake = false;
     }
 
     private void Update()
@@ -42,15 +49,7 @@ public class ProjectileController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // levelCollisionLayer에 포함되는 레이어인지 확인합니다.
-        if (IsLayerMatched(levelCollisionLayer.value, collision.gameObject.layer))
-        {
-            // 벽에서는 충돌한 지점으로부터 약간 앞 쪽에서 발사체를 파괴합니다.
-            Vector2 destroyPosition = collision.ClosestPoint(transform.position) - direction * .2f;
-            DestroyProjectile(destroyPosition, fxOnDestory);
-        }
-        // _attackData.target에 포함되는 레이어인지 확인합니다.
-        else if (IsLayerMatched(attackData.target.value, collision.gameObject.layer))
+         if (collision.gameObject.CompareTag("Player"))
         {
             // 충돌한 오브젝트에서 HealthSystem 컴포넌트를 가져옵니다.
             HealthSystem healthSystem = collision.GetComponent<HealthSystem>();
@@ -59,6 +58,9 @@ public class ProjectileController : MonoBehaviour
                 // 충돌한 오브젝트의 체력을 감소시킵니다.
                 bool isAttackApplied = healthSystem.ChangeHealth(-attackData.power);
             }
+
+            fireBallHitAudioSource.Play(); // 파이어볼 히트
+
             // 충돌한 지점에서 프로젝타일을 파괴합니다.
             DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestory);
         }
@@ -69,7 +71,6 @@ public class ProjectileController : MonoBehaviour
     {
         return layerMask == (layerMask | (1 << objectLayer));
     }
-
     public void InitializeAttack(Vector2 direction, RangedAttackSo attackData)
     {
         this.attackData = attackData;

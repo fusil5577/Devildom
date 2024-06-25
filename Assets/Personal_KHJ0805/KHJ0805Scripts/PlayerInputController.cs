@@ -7,6 +7,7 @@ public class PlayerInputController : InputController
 
     private void Awake()
     {
+        base.Awake();
         camera = Camera.main;
     }
 
@@ -16,8 +17,13 @@ public class PlayerInputController : InputController
         CallMoveEvent(moveInput);
     }
 
-    public void OnJump(InputValue value)
+    public void OnJump()
     {
         CallJumpEvent();
+    }
+
+    public void OnAttack(InputValue value)
+    {
+        isAttacking = value.isPressed;
     }
 }

@@ -16,7 +16,9 @@ GameObject:
   - component: {fileID: 9121963069212718781}
   - component: {fileID: 6829599866504528234}
   - component: {fileID: 7345791126482454857}
-  m_Layer: 3
+  - component: {fileID: 6972127000768735767}
+  - component: {fileID: 9201941105109413879}
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -120,11 +122,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb72f44083074a80836e047109bb0ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
   movementRigidbody: {fileID: 0}
   groundCheck: {fileID: 0}
+  playerAttackBoxPrefab: {fileID: 7208424943366891247, guid: 6867229d908434b92b37beef26519f5e, type: 3}
   movementDirection: {x: 0, y: 0}
   jumpForce: 14
-  moveSpeed: 8
+  moveSound: {fileID: 8300000, guid: 680f1d2ce4deaad499324446047ede37, type: 3}
+  jumpSound: {fileID: 8300000, guid: 694caba4a595eb24e8dc1a9ddeb9bb4b, type: 3}
+  attackSound: {fileID: 8300000, guid: 1dbe0c400fd982b43bdfae7535ba2d39, type: 3}
 --- !u!114 &9121963069212718781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +196,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b78bd911f3af424486857f87f482be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6972127000768735767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3894476139231397084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ac3b4d1052838144a81297355ef5a8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseStats:
+    statsChangeType: 0
+    maxHealth: 5
+    speed: 8
+    attackSO: {fileID: 11400000, guid: 1c2aefdaf46c44d73aaf664f9ad4428f, type: 2}
+  statsModifiers: []
+--- !u!114 &9201941105109413879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3894476139231397084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f06150e4968894883f18fb01012e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthChangeDelay: 0.5
 --- !u!1 &4974018026365036652
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +239,7 @@ GameObject:
   - component: {fileID: 6231824767683560176}
   - component: {fileID: 8604442579231124702}
   - component: {fileID: 630345980280190641}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -103,6 +103,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   fxOnDestory: 1
+  fireBallHitSound: {fileID: 8300000, guid: 03c3a270d71a9a840b8c9524329c18cb, type: 3}
 --- !u!50 &-7216585071813359729
 Rigidbody2D:
   serializedVersion: 4

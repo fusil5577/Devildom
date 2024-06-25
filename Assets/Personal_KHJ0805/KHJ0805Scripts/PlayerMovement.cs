@@ -2,29 +2,35 @@
 
 public class PlayerMovement : MonoBehaviour
 {
-    private InputController controller;
+    public InputController controller;
     public Rigidbody2D movementRigidbody;
     public GroundCheck groundCheck;
+    public GameObject playerAttackBoxPrefab;
+    private CharacterStatHandler characterStatHandler;
+    private HealthSystem healthSystem;
 
     public Vector2 movementDirection = Vector2.zero;
     private bool canDoubleJump = false;
     public float jumpForce = 7f;
     private SpriteRenderer sprite;
 
-    [SerializeField] private float moveSpeed = 8.0f;
-
     private void Awake()
     {
         controller = GetComponent<InputController>();
         movementRigidbody = GetComponent<Rigidbody2D>();
-        groundCheck = GetComponentInChildren<GroundCheck>(); // GroundCheck 컴포넌트를 가져옴
+        groundCheck = GetComponentInChildren<GroundCheck>();
         sprite = GetComponentInChildren<SpriteRenderer>();
-    }
+        characterStatHandler = GetComponent<CharacterStatHandler>();
+        healthSystem = GetComponent<HealthSystem>();
 
-    private void Start()
-    {
         controller.OnMoveEvent += Move;
         controller.OnJumpEvent += Jump;
+        controller.OnAttackEvent += Attack;
+
+        if (healthSystem != null)
+        {
+            healthSystem.OnDeath += PlayerDeath;
+        }
     }
 
     private void Move(Vector2 direction)
@@ -55,6 +61,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void Attack()
+    {
+        PlayerDefaultAttackSO playerAttackData = characterStatHandler.CurrentStat.attackSO as PlayerDefaultAttackSO;
+
+        Vector3 localOffset = new Vector3(0.5f, 0, 0);
+        Vector3 spawnPosition = transform.TransformPoint(localOffset);
+        Quaternion spawnRotation = Quaternion.identity; // 기본 회전값 사용
+
+        GameObject obj = Instantiate(playerAttackBoxPrefab, spawnPosition, spawnRotation);
+        PlayerAttackBox abox = obj.GetComponent<PlayerAttackBox>();
+        abox.Initialize(playerAttackData);
+        controller.isAttacking = false;
+
+    }
+
     private void FixedUpdate()
     {
         ApplyMovement(movementDirection);
@@ -62,7 +83,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyMovement(Vector2 direction)
     {
-        direction = direction * moveSpeed;
+        direction *= characterStatHandler.CurrentStat.speed;
         movementRigidbody.velocity = new Vector2(direction.x, movementRigidbody.velocity.y);
+    }
+
+    private void PlayerDeath()
+    {
+        gameObject.SetActive(false);
+        Time.timeScale = 0f;
     }
 }

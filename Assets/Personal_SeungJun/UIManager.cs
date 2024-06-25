@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,10 @@ public class UIManager : MonoBehaviour
     private bool isDialogueActive;
     private GameObject currentNPC;
 
+    public AudioClip displayNextSound;
+
+    private AudioSource audioSource;
+
     private void Awake()
     {
         if (Instance == null)
@@ -26,6 +31,9 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
     }
 
     void Start()
@@ -37,6 +45,8 @@ public class UIManager : MonoBehaviour
     {
         if (isDialogueActive && Input.GetMouseButtonDown(0))
         {
+            audioSource.PlayOneShot(displayNextSound);
+
             DisplayNextLine();
         }
     }
@@ -49,6 +59,7 @@ public class UIManager : MonoBehaviour
         isDialogueActive = true;
         dialoguePanel.SetActive(true);
         currentNPC = npc;
+
         DisplayNextLine();
     }
 
@@ -63,9 +74,9 @@ public class UIManager : MonoBehaviour
         NPC npcController = currentNPC.GetComponent<NPC>();
         if (npcController != null && npcController.teleport)
         {
-            TestManager.Instance.fadeImage.FadeOut(TestManager.Instance.Screenimage);
+            GameManager.Instance.fadeImage.FadeOut(GameManager.Instance.Screenimage);
             npcController.Teleport();
-            TestManager.Instance.fadeImage.FadeIn(TestManager.Instance.Screenimage);
+            GameManager.Instance.fadeImage.FadeIn(GameManager.Instance.Screenimage);
         }
     }
 

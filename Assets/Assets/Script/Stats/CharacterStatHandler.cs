@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterStatHandler : MonoBehaviour
 {
-    // ±âº» ½ºÅÈ°ú ¹öÇÁ ½ºÅÈµéÀÇ ´É·ÂÄ¡¸¦ Á¾ÇÕÇØ¼­ ½ºÅÈÀ» °è»êÇÏ´Â ÄÄÆ÷³ÍÆ®
+    // ï¿½âº» ï¿½ï¿½ï¿½È°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Èµï¿½ï¿½ï¿½ ï¿½É·ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
     [SerializeField] private CharacterStat baseStats;
     public CharacterStat CurrentStat { get; private set; }
     public List<CharacterStat> statsModifiers = new List<CharacterStat>();
@@ -16,7 +16,7 @@ public class CharacterStatHandler : MonoBehaviour
 
     private void UpdateCharacterStat()
     {
-        // statModifier¸¦ ¹Ý¿µÇÏ±â À§ÇØ baseStatÀ» ¸ÕÀú ¹Þ¾Æ¿È
+        // statModifierï¿½ï¿½ ï¿½Ý¿ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ baseStatï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½
         AttackSo attackSO = null;
         if (baseStats.attackSO != null)
         {
@@ -24,9 +24,11 @@ public class CharacterStatHandler : MonoBehaviour
         }
 
         CurrentStat = new CharacterStat { attackSO = attackSO };
-        // TODO : Áö±ÝÀº ±âº» ´É·ÂÄ¡¸¸ Àû¿ëµÇ°í ÀÖÁö¸¸, ÇâÈÄ ´É·ÂÄ¡ °­È­ ±â´ÉµîÀÌ Ãß°¡µÉ °ÍÀÓ!
+        // TODO : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½âº» ï¿½É·ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½É·ï¿½Ä¡ ï¿½ï¿½È­ ï¿½ï¿½Éµï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!
         CurrentStat.statsChangeType = baseStats.statsChangeType;
         CurrentStat.maxHealth = baseStats.maxHealth;
         CurrentStat.speed = baseStats.speed;
+
+        Debug.Log($"{CurrentStat.maxHealth}");
     }
 }

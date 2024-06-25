@@ -8,7 +8,8 @@ public class MonsterType_B : Monster
 {
     // Start is called before the first frame update
     GameManager gameManager;
-   
+    public MosnterAnimation mosnterAnimation;
+
     protected bool IsAttacking { get; set; }
 
     private float timeSinceLastAttack = float.MaxValue;
@@ -26,16 +27,26 @@ public class MonsterType_B : Monster
     [SerializeField] private SpriteRenderer characterRenderer;
     private float autoMovedir = -1;
 
+    public AudioClip fireballSound;
+
+    private AudioSource fireballAudioSource;
+
+    private HealthSystem healthSystem;
+
     protected virtual void Start()
     {
         gameManager = GameManager.Instance;
         ClosestTarget = gameManager.Player;
 
-        InvokeRepeating("AutoMove", 0f, 1.0f);
+        fireballAudioSource = gameObject.AddComponent<AudioSource>();
+        fireballAudioSource.clip = fireballSound;
+        fireballAudioSource.playOnAwake = false;
+        healthSystem = GetComponent<HealthSystem>();
+        healthSystem.OnDeath += OnDeath;
     }
-    private void OnDamage()
+    private void OnDeath()
     {
-        followRange = 100f;
+        mosnterAnimation.isAlive = false;
     }
     override protected void FixedUpdate()
     {
@@ -68,19 +79,6 @@ public class MonsterType_B : Monster
         aimDirection = direction;
     }
 
-    private void AutoMove()
-    {
-        if (autoMovedir > 0)
-        {
-            autoMovedir = -1;
-        }
-        else
-        {
-            autoMovedir = 1;
-        }
-
-    }
-
     private void UpdateEnemyState(float distance, Vector2 direction)
     {
         IsAttacking = false; // 기본적으로 공격 상태를 false로 설정합니다.
@@ -88,11 +86,6 @@ public class MonsterType_B : Monster
         if (distance <= followRange)
         {
             CheckIfNear(distance, direction);
-        }
-        else
-        {
-            direction.x += autoMovedir;
-            movementDirection = direction;
             Rotate(direction);
         }
     }
@@ -102,10 +95,6 @@ public class MonsterType_B : Monster
         if (distance <= shootRange)
         {
             TryShootAtTarget(direction);
-        }
-        else
-        {
-            movementDirection = direction;
         }
     }
 
@@ -134,11 +123,12 @@ public class MonsterType_B : Monster
 
     private void CreateProjectile(RangedAttackSo RangedAttackSO)
     {
-        
         transform.position = projectileSpawnPosition.position;
         GameObject obj = Instantiate(fireBall,transform);
         ProjectileController attackController = obj.gameObject.GetComponent<ProjectileController>();
         attackController.InitializeAttack(aimDirection, RangedAttackSO);
+
+        fireballAudioSource.Play();
     }
 }
 
