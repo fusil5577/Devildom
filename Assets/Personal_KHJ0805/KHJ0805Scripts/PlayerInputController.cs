@@ -22,9 +22,8 @@ public class PlayerInputController : InputController
         CallJumpEvent();
     }
 
-    public void OnAttack()
+    public void OnAttack(InputValue inputVlalue)
     {
-        isAttacking = true;
-//        CallAttackEvent();
+        isAttacking = inputVlalue.isPressed;
     }
 }
