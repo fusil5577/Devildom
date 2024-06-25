@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4805090731358481740}
   - component: {fileID: 3905276807516241571}
   - component: {fileID: 4914739415520410152}
-  - component: {fileID: -9124638392437299728}
-  m_Layer: 0
+  - component: {fileID: 5008972791284810034}
+  m_Layer: 8
   m_Name: BossMonster
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -30,10 +30,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10, y: -2.95, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5929399969217563753}
+  - {fileID: 5063235559504300353}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &4805090731358481740
@@ -68,7 +69,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1304121, y: -0.04739964}
+  m_Offset: {x: 0.76376575, y: -0.26380074}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -79,7 +80,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.1382885, y: 2.9357674}
+  m_Size: {x: 0.8629807, y: 0.6843612}
   m_EdgeRadius: 0
 --- !u!114 &3905276807516241571
 MonoBehaviour:
@@ -110,9 +111,9 @@ MonoBehaviour:
     statsChangeType: 0
     maxHealth: 5
     speed: 10
-    attackSO: {fileID: 11400000, guid: 26ad413cf3414044e8febc188918acf1, type: 2}
+    attackSO: {fileID: 11400000, guid: 9b130607af3d0c640b579601537bc0fa, type: 2}
   statsModifiers: []
---- !u!114 &-9124638392437299728
+--- !u!114 &5008972791284810034
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,14 +122,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 1420813450134863098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aafbc658892307c469de5377756dd774, type: 3}
+  m_Script: {fileID: 11500000, guid: d23171c32c810f44eb31037b9a3ffaea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mosnterAnimation: {fileID: 0}
+  mosnterAnimation: {fileID: 741399293196483263}
   followRange: 0
+  shootRange: 5
   targetTag: Player
+  fireBall: {fileID: 1117706797228658068, guid: 29830dbd6093d774a86999805f699359, type: 3}
+  projectileSpawnPosition: {fileID: 5063235559504300353}
   characterRenderer: {fileID: 4662074219481210592}
-  deathSoundMonsterA: {fileID: 8300000, guid: 6e6baa132818c3940be42808a5379d1e, type: 3}
+--- !u!1 &4460716797389758998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5063235559504300353}
+  m_Layer: 8
+  m_Name: SpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5063235559504300353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4460716797389758998}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.797, y: -0.807, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9150000584072665735}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7268407528828551594
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +174,8 @@ GameObject:
   - component: {fileID: 5929399969217563753}
   - component: {fileID: 4662074219481210592}
   - component: {fileID: 5895596208317582420}
-  m_Layer: 0
+  - component: {fileID: 741399293196483263}
+  m_Layer: 8
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,8 +191,8 @@ Transform:
   m_GameObject: {fileID: 7268407528828551594}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -10, y: 10, z: 1}
+  m_LocalPosition: {x: 0, y: -0.31, z: 0}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9150000584072665735}
@@ -202,7 +237,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 10
   m_Sprite: {fileID: -3652676412848291748, guid: 6d7cd4f7505dc674c891ca8946cfd98b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -235,3 +270,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &741399293196483263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7268407528828551594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada932c603bb3b54283b61ad684f6041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAlive: 1
