@@ -201,6 +201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee47875ef7604c928269c7775600c42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onMoveSound: {fileID: 8300000, guid: 680f1d2ce4deaad499324446047ede37, type: 3}
+  onJumpSound: {fileID: 8300000, guid: 694caba4a595eb24e8dc1a9ddeb9bb4b, type: 3}
+  onAttackSound: {fileID: 8300000, guid: 1dbe0c400fd982b43bdfae7535ba2d39, type: 3}
 --- !u!114 &2920750671250668735
 MonoBehaviour:
   m_ObjectHideFlags: 0
