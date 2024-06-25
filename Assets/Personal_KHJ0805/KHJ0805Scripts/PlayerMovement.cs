@@ -50,15 +50,19 @@ public class PlayerMovement : MonoBehaviour
         attackAudioSource.playOnAwake = false;
     }
 
+    private void Start()
+    {
+        if (healthSystem != null)
+        {
+            healthSystem.OnDeath += PlayerDeath;
+        }
+    }
+
     private void Update()
     {
         if (!groundCheck.GetGroundedState() && !groundCheck.GetHilledState() && moveAudioSource.isPlaying)
         {
-            if (healthSystem != null)
-            {
-                moveAudioSource.Stop();
-                healthSystem.OnDeath += PlayerDeath;
-            }
+            moveAudioSource.Stop();
         }
     }
 
@@ -146,7 +150,9 @@ public class PlayerMovement : MonoBehaviour
         {
             moveAudioSource.Play();
         }
-        gameObject.SetActive(false);
-        Time.timeScale = 0f;
+
+        Destroy(this.gameObject);
+
+        GameManager.Instance.OnPlayerDeath();
     }
 }
