@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    public GameObject SettingPanel;
-    // �ΰ��� ������ �̵�
+    
     public void LoadMainScene()
     {
         AudioManager.Instance.PlayButtonClickSound();
@@ -27,15 +26,4 @@ public class SceneChanger : MonoBehaviour
         Application.Quit();
     }
 
-    public void SettingBtn()
-    {
-        AudioManager.Instance.PlayButtonClickSound();
-        SettingPanel.SetActive(true);
-    }
-
-    public void SettingPanelEnd()
-    {
-        AudioManager.Instance.PlayButtonClickSound();
-        SettingPanel.SetActive(false);
-    }
 }

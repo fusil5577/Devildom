@@ -10,6 +10,11 @@ public class AudioManager : MonoBehaviour
     public AudioSource bgmSource;
     private AudioSource sfxSource;
 
+    public GameObject mainSettingBtn;
+    public GameObject settingPanel;
+    public GameObject mainToStartBtn;
+    public GameObject startSettingBtn;
+
     public AudioClip startSceneBgm;
     public AudioClip mainSceneBgm;
     public AudioClip buttonClickSfx;
@@ -33,6 +38,7 @@ public class AudioManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+
         }
     }
 
@@ -61,6 +67,9 @@ public class AudioManager : MonoBehaviour
                 break;
             case "MainScene":
                 bgmSource.clip = mainSceneBgm;
+                mainSettingBtn.SetActive(true);
+                mainToStartBtn.SetActive(true);
+                startSettingBtn.SetActive(false);
                 break;
         }
         bgmSource.Play();
@@ -93,5 +102,35 @@ public class AudioManager : MonoBehaviour
     public void PlayButtonClickSound()
     {
         sfxSource.PlayOneShot(buttonClickSfx);
+    }
+
+    public void MainSceneOpenPanel()
+    {
+        settingPanel.SetActive(true);
+        Time.timeScale = 0.0f;
+        PlayButtonClickSound();
+    }
+
+    public void MainSceneClosePanel()
+    {
+        settingPanel.SetActive(false);
+        Time.timeScale = 1.0f;
+        PlayButtonClickSound();
+    }
+
+    public void MoveStartSceneBtn()
+    {
+        SceneManager.LoadScene("StartScene");
+        mainToStartBtn.SetActive(false);
+        settingPanel.SetActive(false);
+        startSettingBtn.SetActive(true);
+        Time.timeScale = 1.0f;
+        PlayButtonClickSound();
+    }
+
+    public void SettingBtn()
+    {
+        settingPanel.SetActive(true);
+        PlayButtonClickSound();
     }
 }
