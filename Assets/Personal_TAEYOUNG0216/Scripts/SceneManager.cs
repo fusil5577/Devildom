@@ -5,23 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class SceneManager : MonoBehaviour
 {
-    public GameObject SettingPanel;
-
-    private static SceneManager instance;
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
     public void LoadMainScene()
     {
         AudioManager.Instance.PlayButtonClickSound();
@@ -38,17 +21,5 @@ public class SceneManager : MonoBehaviour
     {
         AudioManager.Instance.PlayButtonClickSound();
         Application.Quit();
-    }
-
-    public void SettingBtn()
-    {
-        AudioManager.Instance.PlayButtonClickSound();
-        SettingPanel.SetActive(true);
-    }
-
-    public void SettingPanelEnd()
-    {
-        AudioManager.Instance.PlayButtonClickSound();
-        SettingPanel.SetActive(false);
     }
 }

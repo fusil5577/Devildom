@@ -120,10 +120,11 @@ public class AudioManager : MonoBehaviour
 
     public void MoveStartSceneBtn()
     {
-        SceneManager.LoadScene("StartScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("StartScene");
         mainToStartBtn.SetActive(false);
         settingPanel.SetActive(false);
         startSettingBtn.SetActive(true);
+        mainSettingBtn.SetActive(false);
         Time.timeScale = 1.0f;
         PlayButtonClickSound();
     }
