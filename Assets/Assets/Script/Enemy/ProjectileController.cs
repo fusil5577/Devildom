@@ -23,7 +23,7 @@ public class ProjectileController : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody = GetComponentInChildren<Rigidbody2D>();
 
         fireBallHitAudioSource = gameObject.AddComponent<AudioSource>();
         fireBallHitAudioSource.clip = fireBallHitSound;
@@ -76,11 +76,11 @@ public class ProjectileController : MonoBehaviour
         this.attackData = attackData;
         this.direction = direction;
 
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
         UpdateProjectileSprite();
         currentDuration = 0;
-
-        transform.right = this.direction;
-    
 
         isReady = true;
     }

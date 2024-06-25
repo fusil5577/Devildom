@@ -7,7 +7,7 @@ using UnityEngine;
 public class MonsterType_C : Monster
 {
     GameManager gameManager;
-    public MosnterAnimation mosnterAnimation;
+    public BossMonsterAnimation mosnterAnimation;
 
     protected bool IsAttacking { get; set; }
     private bool isMoveUp = true;
@@ -24,8 +24,6 @@ public class MonsterType_C : Monster
 
     public GameObject fireBall;
 
-    private bool isCollidingWithTarget;
-
     float AttackTime = 0;
     float AttackDelayTime = 3f;
 
@@ -36,6 +34,7 @@ public class MonsterType_C : Monster
     private float autoMovedir = -1;
 
     private HealthSystem healthSystem;
+    private HealthSystem collidingTargetHealthSystem;
 
     protected virtual void Start()
     {
@@ -43,6 +42,11 @@ public class MonsterType_C : Monster
         ClosestTarget = gameManager.Player;
         healthSystem = GetComponent<HealthSystem>();
         healthSystem.OnDeath += OnDeath;
+        healthSystem.OnDamage += OnDamage;
+    }
+    private void OnDamage()
+    {
+        mosnterAnimation.Hit();
     }
     private void OnDeath()
     {
@@ -65,51 +69,47 @@ public class MonsterType_C : Monster
 
     private void HandleAttackDelay()
     {
+        if (isMoveLate)
+        {
+            return;
+        }
+
         AttackTime += Time.deltaTime;
         if (AttackTime >= AttackDelayTime)
         {
-            RangedAttackSo rangedAttackSo = characterStatHandler.CurrentStat.attackSO as RangedAttackSo;
-            CreateProjectileThreedirections(rangedAttackSo);
-            AttackTime = 0; 
+            mosnterAnimation.Attack1();
+            AttackTime = 0;
+            StartCoroutine("BossAttack");
         }
     }
 
     private void CreateProjectileThreedirections(RangedAttackSo RangedAttackSO)
     {
-        transform.position = projectileSpawnPosition.position;
-
-        for(int i = 0; i < 3;  i++)
+        Vector2 vector2 = new Vector2(-1f, 1f);
+        for (int i = 0; i < 3; i++)
         {
-            switch(i)
-            {
-                case 0:
-                    GameObject obj = Instantiate(fireBall, transform);
-                    ProjectileController attackController = obj.gameObject.GetComponent<ProjectileController>();
-                    aimDirection = new Vector2(-1f,1f);
-                    attackController.InitializeAttack(aimDirection.normalized, RangedAttackSO);
-                    break; 
-                case 1:
-                    obj = Instantiate(fireBall, transform);
-                    attackController = obj.gameObject.GetComponent<ProjectileController>();
-                    aimDirection = new Vector2(-1f, 0f);
-                    attackController.InitializeAttack(aimDirection.normalized, RangedAttackSO);
-                    break; 
-                case 2:
-                    obj = Instantiate(fireBall, transform);
-                    attackController = obj.gameObject.GetComponent<ProjectileController>();
-                    aimDirection = new Vector2(-1f, -1f);
-                    attackController.InitializeAttack(aimDirection.normalized, RangedAttackSO);
-                    break;
-            }
-            
+            GameObject obj = Instantiate(fireBall, projectileSpawnPosition);
+            ProjectileController attackController = obj.gameObject.GetComponent<ProjectileController>();
+            vector2.y = vector2.y - (1 * i);
+            aimDirection = vector2;
+            attackController.InitializeAttack(aimDirection.normalized, RangedAttackSO);
         }
+
     }
-    private void CreateProjectileEightdirections(RangedAttackSo RangedAttackSO)
+    private void CreateProjectileEightdirections(RangedAttackSo attackData, int numberOfProjectiles, float spreadHeight)
     {
-        transform.position = projectileSpawnPosition.position;
-        GameObject obj = Instantiate(fireBall, transform);
-        ProjectileController attackController = obj.gameObject.GetComponent<ProjectileController>();
-        attackController.InitializeAttack(aimDirection, RangedAttackSO);
+        float heightStep = spreadHeight / (numberOfProjectiles - 1);
+        float startHeight = -spreadHeight / 2;
+
+        for (int i = 0; i < numberOfProjectiles; i++)
+        {
+            float projectileDirYPosition = startHeight + (heightStep * i);
+            Vector2 projectileMoveDirection = new Vector2(-1, projectileDirYPosition).normalized;
+
+            GameObject obj = Instantiate(fireBall, projectileSpawnPosition);
+            ProjectileController attackController = obj.GetComponent<ProjectileController>();
+            attackController.InitializeAttack(projectileMoveDirection, attackData);
+        }
     }
 
     private void BossMonvement()
@@ -143,5 +143,37 @@ public class MonsterType_C : Monster
     {
         yield return new WaitForSeconds(3.0f);
         isMoveLate = false;
+    }
+    IEnumerator BossAttack()
+    {
+        yield return new WaitForSeconds(0.35f);
+
+        if (healthSystem.CurrentHealth < healthSystem.MaxHealth / 2)
+        {
+            RangedAttackSo rangedAttackSo = characterStatHandler.CurrentStat.attackSO as RangedAttackSo;
+            CreateProjectileEightdirections(rangedAttackSo, 8, 2);
+        }
+        else
+        {
+            RangedAttackSo rangedAttackSo = characterStatHandler.CurrentStat.attackSO as RangedAttackSo;
+            CreateProjectileThreedirections(rangedAttackSo);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GameObject receiver = collision.gameObject;
+
+        if (!receiver.CompareTag(targetTag))
+        {
+            return;
+        }
+
+        collidingTargetHealthSystem = receiver.GetComponent<HealthSystem>();
+        if (collidingTargetHealthSystem != null)
+        {
+            AttackSo attackSO = characterStatHandler.CurrentStat.attackSO;
+            bool hasBeenChanged = collidingTargetHealthSystem.ChangeHealth(-attackSO.power);
+        }
     }
 }

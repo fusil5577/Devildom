@@ -15,7 +15,7 @@ MonoBehaviour:
   size: 3
   delay: 5
   power: 1
-  speed: 15
+  speed: 30
   target:
     serializedVersion: 2
     m_Bits: 64
