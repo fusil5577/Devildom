@@ -3,6 +3,7 @@
 <br>
 
 # 🎮 게임 조작 방법 <br>
+![팀프심화](https://github.com/fusil5577/Devildom/assets/167050340/32631dac-2233-44e1-9f98-757f96064719) <br>
 - WASD : 이동 <br>
 - SPASE : 점프 <br>
 - E : 상호작용 <br>
