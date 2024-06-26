@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Assets/Script/Enemy/MosnterAnimation.cs.meta
+guid: aa7a9648089bc436da3ada915ed91f52
+========
+guid: a9f10bd65bc224cf2aeb2d85c648ceca
+>>>>>>>> KHJ2:Assets/Assets/Script/ScriptableObject/PlayerDefaultAttackSO.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
